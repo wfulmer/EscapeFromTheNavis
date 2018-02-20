@@ -31,7 +31,7 @@ var ry = 4;
 
 room_grid[# rx, ry] = mroom;
 //determine how many rooms per branch
-var branches = irandom_range(2,3);
+var branches = 2;//irandom_range(2,3)
 var b1_rooms = 0;
 var b2_rooms = 0;
 var b3_rooms = 0;
@@ -40,10 +40,10 @@ if(branches == 2){
 	b1_rooms = TOTAL_ROOMS - diff;
 	b2_rooms = diff;
 }else if(branches ==3){//something is wrong here as well
-	var diff = irandom_range(5,8);
+	var diff = irandom_range(5,7);
 	b1_rooms = TOTAL_ROOMS - diff;
-	b2_rooms = TOTAL_ROOMS - (2*diff);
-	b3_rooms = TOTAL_ROOMS-b2_rooms;
+	b2_rooms = b1_rooms - diff;
+	b3_rooms = TOTAL_ROOMS - b2_rooms;
 }
 var up = false;
 var right = false;
@@ -88,52 +88,52 @@ for(var i = 0; i<branches; i++){//for each branch
 		}
 	}
 	
-	while(curr_rooms < curr_limit){//create the branch TODO: handle bounds of the grid
+	while(curr_rooms < curr_limit){//create the branch TODO: figure out what is causing the crashes!!!
 		var rdir = irandom_range(0,3);
 		if(curr_rooms == 0){
 			rdir = bdir;
 		}
-	
-		if(rdir == 0 && up == false){
-			room_grid[# rx, ry-1] = mroom;
-			up = false;
-			right = false;
-			down = true;
-			left = false;
-			ry--;
-			curr_rooms++;
-		}else if(rdir == 1 && right == false){
-			room_grid[# rx+1, ry] = mroom;
-			up = false;
-			right = false;
-			down = false;
-			left = true;
-			rx++;
-			curr_rooms++;
-		}else if(rdir == 2 && down == false){
-			room_grid[# rx, ry+1] = mroom;
-			up = true;
-			right = false;
-			down = false;
-			left = false;
-			curr_rooms++;
-			ry++;
-		}else if(rdir == 3 && left == false){
-			room_grid[# rx-1, ry] = mroom;
-			up = false;
-			right = true;
-			down = false;
-			left = false;
-			curr_rooms++;
-			rx--;
-		}
+		
+			if(rdir == 0 && up == false && ry != 0 && room_grid[# rx, ry-1] != mroom){
+				room_grid[# rx, ry-1] = mroom;
+				up = false;
+				right = false;
+				down = true;
+				left = false;
+				ry--;
+				curr_rooms++;
+			}else if(rdir == 1 && right == false && rx != 8 && room_grid[# rx+1, ry] != mroom){
+				room_grid[# rx+1, ry] = mroom;
+				up = false;
+				right = false;
+				down = false;
+				left = true;
+				rx++;
+				curr_rooms++;
+			}else if(rdir == 2 && down == false && ry != 8 && room_grid[# rx, ry+1] != mroom){
+				room_grid[# rx, ry+1] = mroom;
+				up = true;
+				right = false;
+				down = false;
+				left = false;
+				curr_rooms++;
+				ry++;
+			}else if(rdir == 3 && left == false && rx != 0 && room_grid[# rx-1, ry] != mroom){
+				room_grid[# rx-1, ry] = mroom;
+				up = false;
+				right = true;
+				down = false;
+				left = false;
+				curr_rooms++;
+				rx--;
+			}
 	}
 }
 
 
 
 
-for(var i = 0; i<9; i++){//iterate through room_grid and draw rooms
+for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 	for(var j = 0; j<9; j++){
 		
 		var x_off = j*12+1;
@@ -149,22 +149,31 @@ for(var i = 0; i<9; i++){//iterate through room_grid and draw rooms
 			cx = cx-MROOM_WIDTH;
 			cy++;
 			}
-			cy= cy - (MROOM_HEIGHT);
+			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
+			//make hallways MAKE SURE TO KEEP WITHIN BOUNDS OF GRID!
 			//grid[# cx+5, cy+MROOM_HEIGHT] = FLOOR;//create a hallway
+			//if there is a room above
+			//if there is a room to the right
+			//if there is a room below
+			//if there is a room to the left
 		}
 	}
 }
 
 
 
-for(var yy = 1; yy<height-1; yy++){//iterate through entire grid except 1 tile outside border to add walls
+for(var yy = 1; yy<height-1; yy++){//iterate through entire grid except the 1 tile outside border to add walls
 	for(var xx = 1; xx<width-1; xx++){
 		
 		if(grid[# xx, yy] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# xx+1, yy] != FLOOR) grid[# xx+1, yy] = WALL;
+			if(grid[# xx+1, yy] != FLOOR) grid[# xx+1, yy] = WALL;//could have 4 wall constants for each wall tile type
 			if(grid[# xx-1, yy] != FLOOR) grid[# xx-1, yy] = WALL;
 			if(grid[# xx, yy+1] != FLOOR) grid[# xx, yy+1] = WALL;
 			if(grid[# xx, yy-1] != FLOOR) grid[# xx, yy-1] = WALL;
+			if(grid[# xx+1, yy+1] != FLOOR ) grid[# xx+1, yy+1] = WALL;
+			if(grid[# xx-1, yy-1] != FLOOR) grid[# xx-1, yy-1] = WALL;
+			if(grid[# xx+1, yy-1] != FLOOR) grid[# xx+1, yy-1] = WALL;
+			if(grid[# xx-1, yy+1] != FLOOR) grid[# xx-1, yy+1] = WALL;
 		}
 	}
 }
@@ -184,4 +193,3 @@ for(var yy = 0; yy<height; yy++){//iterate through entire grid to draw tiles
 	}
 }
 
-//ds_grid_destroy(grid);
