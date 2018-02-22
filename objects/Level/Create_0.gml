@@ -87,8 +87,11 @@ for(var i = 0; i<branches; i++){//for each branch
 			bdirposs = false;
 		}
 	}
+	//set up a "tries" system
+	var tries = 4;
+	var j = 0;
 	
-	while(curr_rooms < curr_limit){//create the branch TODO: figure out what is causing the crashes!!!
+	do{//create the branch
 		var rdir = irandom_range(0,3);
 		if(curr_rooms == 0){
 			rdir = bdir;
@@ -126,8 +129,10 @@ for(var i = 0; i<branches; i++){//for each branch
 				left = false;
 				curr_rooms++;
 				rx--;
+			}else{
+				j++;	
 			}
-	}
+	}until(curr_rooms == curr_limit || j == tries)
 }
 
 
@@ -150,30 +155,42 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 			cy++;
 			}
 			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
-			//make hallways MAKE SURE TO KEEP WITHIN BOUNDS OF GRID!
 			//grid[# cx+5, cy+MROOM_HEIGHT] = FLOOR;//create a hallway
 			//if there is a room above
+			if(i != 0 && room_grid[# j, i-1] == mroom){
+				grid[# cx+5, cy-1] = FLOOR;//make hallway
+			}
 			//if there is a room to the right
+			if(j!= 8 && room_grid[# j+1, i] == mroom){
+				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = FLOOR;//make hallway
+			}
 			//if there is a room below
+			if(i != 8 && room_grid[# j, i+1] == mroom){
+				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = FLOOR;//make hallway
+			}
 			//if there is a room to the left
+			if(j != 0 && room_grid[# j-1, i] == mroom){
+				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = FLOOR;//make hallway
+			}
+			
 		}
 	}
 }
 
 
 
-for(var yy = 1; yy<height-1; yy++){//iterate through entire grid except the 1 tile outside border to add walls
-	for(var xx = 1; xx<width-1; xx++){
+for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 tile outside border to add walls
+	for(var rx = 1; rx<width-1; rx++){
 		
-		if(grid[# xx, yy] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# xx+1, yy] != FLOOR) grid[# xx+1, yy] = WALL;//could have 4 wall constants for each wall tile type
-			if(grid[# xx-1, yy] != FLOOR) grid[# xx-1, yy] = WALL;
-			if(grid[# xx, yy+1] != FLOOR) grid[# xx, yy+1] = WALL;
-			if(grid[# xx, yy-1] != FLOOR) grid[# xx, yy-1] = WALL;
-			if(grid[# xx+1, yy+1] != FLOOR ) grid[# xx+1, yy+1] = WALL;
-			if(grid[# xx-1, yy-1] != FLOOR) grid[# xx-1, yy-1] = WALL;
-			if(grid[# xx+1, yy-1] != FLOOR) grid[# xx+1, yy-1] = WALL;
-			if(grid[# xx-1, yy+1] != FLOOR) grid[# xx-1, yy+1] = WALL;
+		if(grid[# rx, ry] == FLOOR){//check if surrounding tiles are void, if so set as wall
+			if(grid[# rx+1, ry] != FLOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
+			if(grid[# rx-1, ry] != FLOOR) grid[# rx-1, ry] = WALL;
+			if(grid[# rx, ry+1] != FLOOR) grid[# rx, ry+1] = WALL;
+			if(grid[# rx, ry-1] != FLOOR) grid[# rx, ry-1] = WALL;
+			if(grid[# rx+1, ry+1] != FLOOR ) grid[# rx+1, ry+1] = WALL;
+			if(grid[# rx-1, ry-1] != FLOOR) grid[# rx-1, ry-1] = WALL;
+			if(grid[# rx+1, ry-1] != FLOOR) grid[# rx+1, ry-1] = WALL;
+			if(grid[# rx-1, ry+1] != FLOOR) grid[# rx-1, ry+1] = WALL;
 		}
 	}
 }
@@ -181,14 +198,14 @@ for(var yy = 1; yy<height-1; yy++){//iterate through entire grid except the 1 ti
 global.back_layer = layer_create(1);
 global.back_tilemap = layer_tilemap_create(global.back_layer,0,0,tileset1,room_width,room_height);
 
-for(var yy = 0; yy<height; yy++){//iterate through entire grid to draw tiles
-	for(var xx = 0; xx<width; xx++){
-		if(grid[# xx,yy] == FLOOR){
-			tilemap_set_at_pixel(global.back_tilemap,4,xx*CELL_WIDTH,yy*CELL_HEIGHT);//might need to multiply by cell width and height respectively.
+for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
+	for(var rx = 0; rx<width; rx++){
+		if(grid[# rx,ry] == FLOOR){
+			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);//might need to multiply by cell width and height respectively.
 			//consider also changing the constants to 128 by 128?
 		}
-		else if (grid[# xx, yy] == WALL){
-			tilemap_set_at_pixel(global.back_tilemap,1,xx*CELL_WIDTH,yy*CELL_HEIGHT);
+		else if (grid[# rx, ry] == WALL){
+			tilemap_set_at_pixel(global.back_tilemap,1,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 		}
 	}
 }
