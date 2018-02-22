@@ -88,7 +88,7 @@ for(var i = 0; i<branches; i++){//for each branch
 		}
 	}
 	//set up a "tries" system
-	var tries = 4;
+	var tries = 100;
 	var j = 0;
 	
 	do{//create the branch
@@ -105,6 +105,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				left = false;
 				ry--;
 				curr_rooms++;
+				j = 0;
 			}else if(rdir == 1 && right == false && rx != 8 && room_grid[# rx+1, ry] != mroom){
 				room_grid[# rx+1, ry] = mroom;
 				up = false;
@@ -113,6 +114,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				left = true;
 				rx++;
 				curr_rooms++;
+				j = 0;
 			}else if(rdir == 2 && down == false && ry != 8 && room_grid[# rx, ry+1] != mroom){
 				room_grid[# rx, ry+1] = mroom;
 				up = true;
@@ -121,6 +123,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				left = false;
 				curr_rooms++;
 				ry++;
+				j = 0;
 			}else if(rdir == 3 && left == false && rx != 0 && room_grid[# rx-1, ry] != mroom){
 				room_grid[# rx-1, ry] = mroom;
 				up = false;
@@ -129,13 +132,26 @@ for(var i = 0; i<branches; i++){//for each branch
 				left = false;
 				curr_rooms++;
 				rx--;
+				j = 0;
 			}else{
 				j++;	
 			}
 	}until(curr_rooms == curr_limit || j == tries)
 }
 
+//check if the layout is less than TOTAL_ROOMS, if so need to restart room
+var tot_rooms = 0;
+for(var i = 0; i<9; i++){
+	for(var j = 0; j<9; j++){
+		if(room_grid[# j, i] == mroom){
+			tot_rooms++;
+		}
+	}
+}
 
+if(tot_rooms < TOTAL_ROOMS){
+	room_restart();
+}
 
 
 for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
