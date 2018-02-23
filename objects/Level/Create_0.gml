@@ -3,15 +3,15 @@
 var width = room_width div CELL_WIDTH;
 var height = room_height div CELL_HEIGHT;
 
-//create grid
+//create grids
 grid = ds_grid_create(width,height);
+room_grid = ds_grid_create(9,9);
+var mroom = 5;
+var void = 6;
 
 //Fill the grid with the void
-ds_grid_set_region(grid,0,0,width-1, height-1,VOID);//grid, two corners to fill: top left to bottom right.
-
-
-//Randomize the world
-randomize();
+ds_grid_set_region(grid,0,0,width-1, height-1,VOID);
+randomize();//randomize so it isn't the same pattern each time
 
 //"create" the controller in the center of the grid
 var cx = width div 2;
@@ -22,16 +22,14 @@ instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2,"I
 
 
 //determine where the rooms will be
-room_grid = ds_grid_create(9,9);
-var mroom = 5;
-var void = 6;
+
 //start from initial room
 var rx = 4;
 var ry = 4;
-
 room_grid[# rx, ry] = mroom;
+
 //determine how many rooms per branch
-var branches = 2;//irandom_range(2,3)
+var branches = irandom_range(2,3);
 var b1_rooms = 0;
 var b2_rooms = 0;
 var b3_rooms = 0;
@@ -39,7 +37,7 @@ if(branches == 2){
 	var diff = irandom_range(5,10);
 	b1_rooms = TOTAL_ROOMS - diff;
 	b2_rooms = diff;
-}else if(branches ==3){//something is wrong here as well
+}else if(branches ==3){//something is wrong with the math here but whatever
 	var diff = irandom_range(5,7);
 	b1_rooms = TOTAL_ROOMS - diff;
 	b2_rooms = b1_rooms - diff;
@@ -61,8 +59,7 @@ for(var i = 0; i<branches; i++){//for each branch
 	}else if(i == 2){
 		curr_limit = b3_rooms;
 	}
-	rx = 4;
-	ry = 4;
+
 	var curr_rooms = 0;
 	//make sure branches don't get the same initial direction
 	var bup = false;
@@ -72,7 +69,7 @@ for(var i = 0; i<branches; i++){//for each branch
 	var bdirposs = true;
 	
 	while(bdirposs){//this makes it so there aren't repeats, but is inefficient
-		var bdir = irandom_range(0,3);//maybe could make this simpler by generating a random sequence?
+		var bdir = irandom_range(0,3);
 		if(bdir == 0 && bup == false){
 			bup = true;
 			bdirposs = false;
@@ -87,6 +84,7 @@ for(var i = 0; i<branches; i++){//for each branch
 			bdirposs = false;
 		}
 	}
+	
 	//set up a "tries" system
 	var tries = 100;
 	var j = 0;
@@ -157,8 +155,8 @@ if(tot_rooms < TOTAL_ROOMS){
 for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 	for(var j = 0; j<9; j++){
 		
-		var x_off = j*12+1;
-		var y_off = i*8+1;
+		var x_off = j*(MROOM_WIDTH+1)+1;
+		var y_off = i*(MROOM_HEIGHT+1)+1;
 		cx = x_off;
 		cy = y_off;
 		if(room_grid[# j, i] == mroom){
@@ -171,7 +169,6 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 			cy++;
 			}
 			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
-			//grid[# cx+5, cy+MROOM_HEIGHT] = FLOOR;//create a hallway
 			//if there is a room above
 			if(i != 0 && room_grid[# j, i-1] == mroom){
 				grid[# cx+5, cy-1] = FLOOR;//make hallway
@@ -217,7 +214,7 @@ global.back_tilemap = layer_tilemap_create(global.back_layer,0,0,tileset1,room_w
 for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 	for(var rx = 0; rx<width; rx++){
 		if(grid[# rx,ry] == FLOOR){
-			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);//might need to multiply by cell width and height respectively.
+			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			//consider also changing the constants to 128 by 128?
 		}
 		else if (grid[# rx, ry] == WALL){
