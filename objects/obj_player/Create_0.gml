@@ -1,6 +1,6 @@
 /// @description Initialize var
 hp = 100;
-player_speed = 10;
+player_speed = 4;
 fire_rate = 30;
 cooldown = 0;
 damage = 20;

@@ -151,6 +151,7 @@ if(tot_rooms < TOTAL_ROOMS){
 	room_restart();
 }
 
+//set viewport to 4*(MROOM_WIDTH+!)+1, 4*(MROOM_HEIGHT+1)+1
 
 for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 	for(var j = 0; j<9; j++){
@@ -171,19 +172,19 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
 			//if there is a room above
 			if(i != 0 && room_grid[# j, i-1] == mroom){
-				grid[# cx+5, cy-1] = FLOOR;//make hallway
+				grid[# cx+5, cy-1] = VDOOR;//make hallway was FLOOR
 			}
 			//if there is a room to the right
 			if(j!= 8 && room_grid[# j+1, i] == mroom){
-				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = FLOOR;//make hallway
+				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
 			}
 			//if there is a room below
 			if(i != 8 && room_grid[# j, i+1] == mroom){
-				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = FLOOR;//make hallway
+				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;//make hallway
 			}
 			//if there is a room to the left
 			if(j != 0 && room_grid[# j-1, i] == mroom){
-				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = FLOOR;//make hallway
+				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
 			}
 			
 		}
@@ -196,14 +197,14 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 	for(var rx = 1; rx<width-1; rx++){
 		
 		if(grid[# rx, ry] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# rx+1, ry] != FLOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
-			if(grid[# rx-1, ry] != FLOOR) grid[# rx-1, ry] = WALL;
-			if(grid[# rx, ry+1] != FLOOR) grid[# rx, ry+1] = WALL;
-			if(grid[# rx, ry-1] != FLOOR) grid[# rx, ry-1] = WALL;
-			if(grid[# rx+1, ry+1] != FLOOR ) grid[# rx+1, ry+1] = WALL;
-			if(grid[# rx-1, ry-1] != FLOOR) grid[# rx-1, ry-1] = WALL;
-			if(grid[# rx+1, ry-1] != FLOOR) grid[# rx+1, ry-1] = WALL;
-			if(grid[# rx-1, ry+1] != FLOOR) grid[# rx-1, ry+1] = WALL;
+			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
+			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR) grid[# rx-1, ry] = WALL;
+			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR) grid[# rx, ry+1] = WALL;
+			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR) grid[# rx, ry-1] = WALL;
+			if(grid[# rx+1, ry+1] != FLOOR && grid[# rx+1, ry+1] != VDOOR && grid[# rx+1, ry+1] != HDOOR) grid[# rx+1, ry+1] = WALL;
+			if(grid[# rx-1, ry-1] != FLOOR && grid[# rx-1, ry-1] != VDOOR && grid[# rx-1, ry-1] != HDOOR) grid[# rx-1, ry-1] = WALL;
+			if(grid[# rx+1, ry-1] != FLOOR && grid[# rx+1, ry-1] != VDOOR && grid[# rx+1, ry-1] != HDOOR) grid[# rx+1, ry-1] = WALL;
+			if(grid[# rx-1, ry+1] != FLOOR && grid[# rx-1, ry+1] != VDOOR && grid[# rx-1, ry+1] != HDOOR) grid[# rx-1, ry+1] = WALL;
 		}
 	}
 }
@@ -215,10 +216,15 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 	for(var rx = 0; rx<width; rx++){
 		if(grid[# rx,ry] == FLOOR){
 			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
-			//consider also changing the constants to 128 by 128?
-		}
-		else if (grid[# rx, ry] == WALL){
+		}else if (grid[# rx, ry] == WALL){
 			tilemap_set_at_pixel(global.back_tilemap,1,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_block);//add a block object
+		}else if (grid[# rx, ry] == VDOOR){
+			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_vdoor);//add a door object	
+		}else if (grid[# rx, ry] == HDOOR){
+			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
 		}
 	}
 }
