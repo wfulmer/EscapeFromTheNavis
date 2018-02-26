@@ -212,6 +212,9 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 global.back_layer = layer_create(1);
 global.back_tilemap = layer_tilemap_create(global.back_layer,0,0,tileset1,room_width,room_height);
 
+//set up the view
+
+
 for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 	for(var rx = 0; rx<width; rx++){
 		if(grid[# rx,ry] == FLOOR){
@@ -220,12 +223,13 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 			tilemap_set_at_pixel(global.back_tilemap,1,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_block);//add a block object
 		}else if (grid[# rx, ry] == VDOOR){
-			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			tilemap_set_at_pixel(global.back_tilemap,10,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_vdoor);//add a door object	
 		}else if (grid[# rx, ry] == HDOOR){
-			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			tilemap_set_at_pixel(global.back_tilemap,11,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
 		}
 	}
 }
-
+//create the camera
+//view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90);
