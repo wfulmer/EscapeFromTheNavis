@@ -153,7 +153,7 @@ if(tot_rooms < TOTAL_ROOMS){
 
 //set viewport to 4*(MROOM_WIDTH+!)+1, 4*(MROOM_HEIGHT+1)+1
 
-for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
+for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 	for(var j = 0; j<9; j++){
 		
 		var x_off = j*(MROOM_WIDTH+1)+1;
@@ -162,14 +162,15 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and hallways
 		cy = y_off;
 		if(room_grid[# j, i] == mroom){
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
-			for(var rx = 0; rx <MROOM_WIDTH; rx++){
-				grid[# cx, cy] = FLOOR;
-				cx++;
-			}
+				for(var rx = 0; rx <MROOM_WIDTH; rx++){
+					grid[# cx, cy] = FLOOR;
+					cx++;
+				}
 			cx = cx-MROOM_WIDTH;
 			cy++;
 			}
 			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
+			
 			//if there is a room above
 			if(i != 0 && room_grid[# j, i-1] == mroom){
 				grid[# cx+5, cy-1] = VDOOR;//make hallway was FLOOR
@@ -211,9 +212,6 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 
 global.back_layer = layer_create(1);
 global.back_tilemap = layer_tilemap_create(global.back_layer,0,0,tileset1,room_width,room_height);
-
-//set up the view
-
 
 for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 	for(var rx = 0; rx<width; rx++){
