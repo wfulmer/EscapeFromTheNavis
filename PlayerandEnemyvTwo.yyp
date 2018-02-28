@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "009204e5-d267-410a-a0ec-9b184de89edc",
+            "Value": {
+                "id": "412608cd-db69-419f-b202-220516f96b76",
+                "resourcePath": "objects\\objBoss\\objBoss.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "059d089b-049a-4532-bf31-029e2bd44253",
             "Value": {
                 "id": "97c8df68-fe4e-4f6c-ab55-5fc45834e170",
