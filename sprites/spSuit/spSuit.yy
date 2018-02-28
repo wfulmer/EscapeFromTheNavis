@@ -16,24 +16,24 @@
     "edgeFiltering": false,
     "frames": [
         {
-            "id": "aeacbe60-49ae-4f8b-b515-925bf4767ac7",
+            "id": "ac3fae3e-3664-4109-a1ad-c38af19f2911",
             "modelName": "GMSpriteFrame",
             "mvc": "1.0",
             "SpriteId": "bce13555-81f6-4576-aec6-e3b5616cc11c",
             "compositeImage": {
-                "id": "8f0198d3-354b-47c1-82dd-2d23a0d81af0",
+                "id": "ddac8611-a8af-450a-b039-e04fa7dee97e",
                 "modelName": "GMSpriteImage",
                 "mvc": "1.0",
-                "FrameId": "aeacbe60-49ae-4f8b-b515-925bf4767ac7",
+                "FrameId": "ac3fae3e-3664-4109-a1ad-c38af19f2911",
                 "LayerId": "00000000-0000-0000-0000-000000000000"
             },
             "images": [
                 {
-                    "id": "3c1bec63-12ac-4537-932c-201d0bb2dda1",
+                    "id": "41111ca1-f8a2-41a2-a0f4-454ef9e07af1",
                     "modelName": "GMSpriteImage",
                     "mvc": "1.0",
-                    "FrameId": "aeacbe60-49ae-4f8b-b515-925bf4767ac7",
-                    "LayerId": "0d0a0646-e98c-4d41-b25a-b363e1df6042"
+                    "FrameId": "ac3fae3e-3664-4109-a1ad-c38af19f2911",
+                    "LayerId": "11ed1dd5-8618-41a3-ae88-d3ba929d8fa1"
                 }
             ]
         }
@@ -43,7 +43,7 @@
     "height": 64,
     "layers": [
         {
-            "id": "0d0a0646-e98c-4d41-b25a-b363e1df6042",
+            "id": "11ed1dd5-8618-41a3-ae88-d3ba929d8fa1",
             "modelName": "GMImageLayer",
             "mvc": "1.0",
             "SpriteId": "bce13555-81f6-4576-aec6-e3b5616cc11c",
@@ -54,7 +54,7 @@
             "visible": true
         }
     ],
-    "origin": 9,
+    "origin": 4,
     "originLocked": false,
     "playbackSpeed": 15,
     "playbackSpeedType": 0,
@@ -65,6 +65,6 @@
     "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f",
     "type": 0,
     "width": 64,
-    "xorig": 19,
+    "xorig": 32,
     "yorig": 32
 }
