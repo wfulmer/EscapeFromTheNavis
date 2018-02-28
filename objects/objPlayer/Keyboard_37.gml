@@ -1,0 +1,2 @@
+shootleft()
+///@description shoot left

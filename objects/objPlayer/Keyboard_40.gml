@@ -1,0 +1,2 @@
+shootdown();
+///@description shoot up

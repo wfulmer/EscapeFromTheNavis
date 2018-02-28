@@ -1,0 +1,2 @@
+equipsuit()
+///@description equip suit

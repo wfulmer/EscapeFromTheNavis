@@ -1,0 +1,2 @@
+removesuit()
+///@description remove suit

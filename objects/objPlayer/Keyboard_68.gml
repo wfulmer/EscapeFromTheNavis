@@ -1,0 +1,2 @@
+moveplayerright()
+///@description move right
