@@ -14,6 +14,7 @@ suitHealth=0;
 suit_movement = movement*2;
 suit_bspeed = bulletspeed*1.5;
 suit_frate = fireRate - (fireRate div 2);
+suit_tickdown = 15;
 
 //current stats
 curr_movement = movement;
