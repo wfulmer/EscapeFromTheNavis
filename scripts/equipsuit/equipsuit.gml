@@ -6,7 +6,7 @@
 	 case state.human:
 	 
 	 {
-		if(instance_place(x+movement,y,objSuit)||instance_place(x-movement,y,objSuit)||instance_place(x,y+movement,objSuit)||instance_place(x,y-movement,objSuit))
+		if(instance_place(x,y,objSuit))
 		{
 		protagonistState=state.suit
 		audio_play_sound(soundsuiton,0,false);

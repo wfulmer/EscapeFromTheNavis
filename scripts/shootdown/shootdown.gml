@@ -21,7 +21,7 @@ if(cooldown<=0){
 	
 	}
 bulletPath=270
-instance_create_layer(x,y+42,"Instances",objPlayerBullet)
+instance_create_layer(x+8,y+16,"Instances",objPlayerBullet)
 
 cooldown=fireRate;
 }

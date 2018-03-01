@@ -25,9 +25,9 @@ if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 	}}
 }
 
-if(place_empty(x-movement,y)||!instance_place(x-movement,y,objblock))
+if(place_empty(x-curr_movement,y)||!instance_place(x-curr_movement,y,objblock))
 {
 	
-	x=x-movement
+	x=x-curr_movement
 	
 }

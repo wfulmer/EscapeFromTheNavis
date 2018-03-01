@@ -6,17 +6,17 @@ switch (protagonistState)
 {
 	case state.suit:
 	{
-		movement=16;
-		bulletspeed=26;
-		fireRate=4.5;	
+		curr_movement = movement;
+		curr_bulletspeed = bulletspeed;
+		curr_firerate = fireRate;	
 		break;
 	}
 	
 	case state.human:
 	{
-		movement=10;
-		bulletspeed=16;
-		fireRate=9;	
+		curr_movement = suit_movement;
+		curr_bulletspeed = suit_bspeed;
+		curr_firerate = suit_frate;	
 		break;
 	}
 	
