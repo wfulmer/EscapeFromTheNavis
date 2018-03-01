@@ -10,7 +10,7 @@ if(suitHealth<=0)
 		 audio_play_sound(soundleavesuit,0,false);
 		 sprite_index=sprPlayerDown
 		 image_index=0;
-		 instance_create_layer(x,y,"Instances",objSuit);
+		 instance_create_layer(x,y+25,"Instances",objSuit);
 	suitHealth=0;
 	
 }
