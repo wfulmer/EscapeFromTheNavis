@@ -13,4 +13,4 @@
 		objHUD.scoresofarfar=objHUD.scoresofarfar+5;
 	}
 }
-with(self) instance_destroy();
+instance_destroy();

@@ -25,7 +25,8 @@ if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 	}
 	}
 }
-if(place_empty(x,y-curr_movement)||!instance_place(x,y-curr_movement,objblock))
+if(place_empty(x,y-curr_movement)||!instance_place(x,y-curr_movement,objblock)|| 
+(global.islocked == false && instance_place(x,y-curr_movement,obj_vdoor)))
 {
 	y=y-curr_movement	
 	

@@ -7,19 +7,16 @@
 	 case state.human:
 	 
 	 {
-		if(instance_place(x+movement,y,objSuit)||instance_place(x-movement,y,objSuit)||instance_place(x,y+movement,objSuit)||instance_place(x,y-movement,objSuit))
+		if(instance_place(x,y,objSuitUp))
 		{
-			if(inventory[?"suitup"]>=1)
-			{
-				suitHealth=suitHealth+70;
+				suitHealth = 100;
 				audio_play_sound(soundusepowerup,0,false)
-				inventory[?"suitup"]=inventory[?"suitup"]-1;
+				//inventory[?"suitup"]=inventory[?"suitup"]-1;
 				
-			}
 		}
 		break;
 	 }
-	 case state.suit:
+	 /*case state.suit:
 	 {
 		if(inventory[?"suitup"]>=1)
 			{
@@ -28,7 +25,7 @@
 				inventory[?"suitup"]=inventory[?"suitup"]-1;
 			}	 
 			break;
-	 }
+	 }*/
 	 
  }
 	

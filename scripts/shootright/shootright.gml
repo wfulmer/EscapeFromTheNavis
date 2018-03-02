@@ -23,6 +23,6 @@ if(cooldown<=0){
 bulletPath=0
 instance_create_layer(x+25,y+14,"Instances",objPlayerBullet)
 
-cooldown=fireRate;
+cooldown=curr_firerate;
 }
 	 
