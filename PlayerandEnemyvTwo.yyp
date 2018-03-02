@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "3cf538af-89a6-4027-a7e3-8ef698637962",
+            "Value": {
+                "id": "233cd80f-f88b-4797-95bd-f3b4e884536c",
+                "resourcePath": "objects\\obj_mroom_spawner\\obj_mroom_spawner.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "4193921a-c074-4a4f-8ea0-f8c931b103ce",
             "Value": {
                 "id": "c9b58068-0004-4c03-a3af-41055408cee8",
@@ -660,6 +668,14 @@
                 "id": "5f498965-a559-4872-878b-0d788d51bd55",
                 "resourcePath": "objects\\objSuitUp\\objSuitUp.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "fb696616-7b11-4d59-b82f-1b672f03c9b4",
+            "Value": {
+                "id": "eabfc40e-ce6e-425c-a0c0-16efbbf004be",
+                "resourcePath": "sprites\\sprBossTemp\\sprBossTemp.yy",
+                "resourceType": "GMSprite"
             }
         }
     ],
