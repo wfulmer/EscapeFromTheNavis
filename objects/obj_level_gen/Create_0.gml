@@ -164,7 +164,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
 				for(var rx = 0; rx <MROOM_WIDTH; rx++){
 					grid[# cx, cy] = FLOOR;
-					if(ry == 3 && rx == 5){//place spawner in center of each room
+					if(ry == 0 && rx == 0){//place spawner in top left corner of each room
 						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);
 						show_debug_message("spawner made");
 					}
@@ -236,3 +236,5 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 //create the camera
 //view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90);
 
+//Set global variables????
+global.islocked = true;
