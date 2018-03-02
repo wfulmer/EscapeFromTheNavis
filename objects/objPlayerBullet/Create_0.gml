@@ -3,7 +3,7 @@
 
 audio_play_sound(soundbullet,-1,false);
 
-speed=objPlayer.bulletspeed;
+speed=objPlayer.curr_bulletspeed;
 direction=objPlayer.bulletPath;
 image_angle=direction;
 

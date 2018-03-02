@@ -210,7 +210,7 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 	}
 }
 
-global.back_layer = layer_create(1);
+global.back_layer = layer_create(2);
 global.back_tilemap = layer_tilemap_create(global.back_layer,0,0,tileset1,room_width,room_height);
 
 for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles

@@ -3,7 +3,7 @@
 
 suitHealth=suitHealth-suit_tickdown;
 
-if(suitHealth<=35) { hp=hp-15; audio_play_sound(soundwarning,2,false); }
+if(suitHealth<=35) {audio_play_sound(soundwarning,2,false); }
 if(suitHealth<=0) 
 {
 	protagonistState=state.human
