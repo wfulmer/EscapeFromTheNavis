@@ -88,7 +88,10 @@ cooldown=cooldown-1;
 	usehealthpowerup();
  }
  
-if(hp<=0)instance_destroy();
+if(hp<=0){
+	instance_destroy();
+	//display GAME OVER
+}
 
 switch (protagonistState)
 {
