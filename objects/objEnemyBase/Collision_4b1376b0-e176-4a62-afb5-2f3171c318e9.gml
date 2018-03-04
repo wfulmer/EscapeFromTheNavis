@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description TODO don't destroy itself on contact
 // You can write your code in this editor
 with(other)
 {
