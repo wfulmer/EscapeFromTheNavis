@@ -10,7 +10,6 @@ switch protagonistState
 		{
 				suitHealth = 100;
 				audio_play_sound(soundusepowerup,0,false)
-				audio_play_sound(soundgetpowerup,0,false)
 				with(other) instance_destroy();
 				//inventory[?"suitup"]=inventory[?"suitup"]-1;
 				

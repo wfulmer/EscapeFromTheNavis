@@ -3,4 +3,4 @@
 spawn_active = true;
 tot_enemy = 4;
 reward = false;
-r_chance = irandom_range(0,10);
+r_chance = irandom_range(0,5);
