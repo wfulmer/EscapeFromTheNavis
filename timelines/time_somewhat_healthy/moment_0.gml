@@ -1,0 +1,1 @@
+path_start(bossHiding,10,path_action_stop,false);

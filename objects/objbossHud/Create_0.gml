@@ -4,14 +4,26 @@ enum pattern{  //states that control the boss pattern
 healthy,
 somewhat_healthy,
 low_health,
-deseperate_health
+deseperate_health,
+hiding
 }
 boss_hp=100; // health
 boss_spawners=5; // how many spawners can the boss make
 
+boss_alive= instance_exists(objBoss)
+boss_hiding= instance_exists(objbossSheild) 
 
+boss_status= pattern.healthy
+	with(objBoss)
+	{
+	timeline_index=time_healthy;
+	timeline_running=true;
+	timeline_loop=true;
+	}
 
-boss_status=pattern.healthy
+	init=pattern.healthy;
+			
+
 if (instance_exists(objPlayer))
  {
 	 search=mp_grid_create(0,0,room_width/64,room_height/64,64,64);
@@ -36,7 +48,5 @@ if (instance_exists(objPlayer))
 	 }
  }
  
- 
-objBoss.timeline_index=time_healthy;
-objBoss.timeline_running=true;
-objBoss.timeline_loop=true;
+
+ init=false

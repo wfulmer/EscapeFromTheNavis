@@ -527,6 +527,22 @@
             }
         },
         {
+            "Key": "96fb3b28-c87a-4f0a-83ea-2f6e0610a794",
+            "Value": {
+                "id": "c9d2bc2c-0b22-4e0c-baaa-00b1df433f29",
+                "resourcePath": "paths\\bossHiding\\bossHiding.yy",
+                "resourceType": "GMPath"
+            }
+        },
+        {
+            "Key": "9a5ddba7-d4b3-4a3c-a577-ece2c138d420",
+            "Value": {
+                "id": "cf688fc5-a0b9-4ada-b471-89643302c797",
+                "resourcePath": "timelines\\time_somewhat_healthy\\time_somewhat_healthy.yy",
+                "resourceType": "GMTimeline"
+            }
+        },
+        {
             "Key": "9af94384-df2b-40a1-9e77-aa8fcc612a78",
             "Value": {
                 "id": "686fed25-7915-463a-926b-0390bdee4dc5",
