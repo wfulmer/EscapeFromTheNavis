@@ -1,3 +1,5 @@
+
+
 if(instance_exists(objPlayer))
 {
 	newPath= path_add();
@@ -8,5 +10,3 @@ if(instance_exists(objPlayer))
 		
 	}     
 }
-
-

@@ -1,48 +1,38 @@
 {
-    "id": "9dee3394-b1b8-4c56-90ac-280aeb9441cc",
+    "id": "518fff90-ae1e-4b48-8d40-8efcc6bd9552",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "objboss_acid",
+    "name": "objbabyboss",
     "eventList": [
         {
-            "id": "0473a27e-8f02-449e-9d71-49f22b04718a",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "6d6b4738-10eb-4d37-b9f7-1cc094669fd6",
-            "enumb": 0,
-            "eventtype": 4,
-            "m_owner": "9dee3394-b1b8-4c56-90ac-280aeb9441cc"
-        },
-        {
-            "id": "1be5bf34-32a5-4a7b-a9c3-d8ba2bebd9b5",
+            "id": "6d93b959-d218-4631-935d-13ede6d678e9",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "9dee3394-b1b8-4c56-90ac-280aeb9441cc"
+            "m_owner": "518fff90-ae1e-4b48-8d40-8efcc6bd9552"
         },
         {
-            "id": "3815cd8e-ef90-4c6f-a198-df327a1f52a7",
+            "id": "9a7f66b8-6e5c-440b-acbd-b5016f5b2c39",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
-            "eventtype": 7,
-            "m_owner": "9dee3394-b1b8-4c56-90ac-280aeb9441cc"
+            "eventtype": 3,
+            "m_owner": "518fff90-ae1e-4b48-8d40-8efcc6bd9552"
         },
         {
-            "id": "31ff7881-03f8-4370-8d08-35a7428b5394",
+            "id": "4777dc8a-ae94-4a30-ab69-5efee68032cd",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
-            "collisionObjectId": "245f5997-0fb6-468b-8c72-7c61b443aad6",
+            "collisionObjectId": "6d6b4738-10eb-4d37-b9f7-1cc094669fd6",
             "enumb": 0,
             "eventtype": 4,
-            "m_owner": "9dee3394-b1b8-4c56-90ac-280aeb9441cc"
+            "m_owner": "518fff90-ae1e-4b48-8d40-8efcc6bd9552"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -63,6 +53,6 @@
     "physicsStartAwake": true,
     "properties": null,
     "solid": false,
-    "spriteId": "782fec08-88b8-468f-acf8-3a661480a12a",
+    "spriteId": "6c99c658-3b55-438e-a40a-55c2b4200c86",
     "visible": true
 }
