@@ -8,12 +8,7 @@ with(other)
 		case state.human:
 		{
 		hp=hp-objEnemyBase.enemy_base_damage;
-		if (hp<=0) 
-		{ 
-			instance_destroy();
-			audio_play_sound(playerdies,0,false);
-			instance_destroy(objEnemyBase);
-		}
+		
 		
 	break;
 	}
