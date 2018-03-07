@@ -12,5 +12,6 @@ if (!instance_exists(objEnemyBase)){
 			instance_create_layer(spawn_x, spawn_y,"Instances",objhealthup);
 			reward = true;
 		}
+		instance_destroy();
 	}
 }

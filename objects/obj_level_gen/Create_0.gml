@@ -163,10 +163,16 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 		if(room_grid[# j, i] == mroom || room_grid[# j, i] == smroom){
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
 				for(var rx = 0; rx <MROOM_WIDTH; rx++){
-					grid[# cx, cy] = FLOOR;
+					//grid[# cx, cy] = FLOOR;
 					if(ry == 0 && rx == 0 && room_grid[# j, i] == mroom){//if in top left corner of room and you aren't in initial room
 						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);//place spawner in top left corner of each room
 						show_debug_message("spawner made");
+					}
+					var temp = lay_list[| 0];
+					if(temp[# rx, ry] == OBSTACLE){
+						grid[# cx,cy] = OBSTACLE;	
+					} else if(temp[# rx,ry] == VOID){
+						grid[# cx, cy] = FLOOR;
 					}
 					cx++;
 				}
@@ -230,6 +236,9 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 		}else if (grid[# rx, ry] == HDOOR){
 			tilemap_set_at_pixel(global.back_tilemap,11,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
+		}else if (grid[# rx, ry] == OBSTACLE){
+			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",objblock);
 		}
 	}
 }

@@ -8,3 +8,4 @@
 #macro TOTAL_ROOMS 15
 #macro MROOM_WIDTH 11
 #macro MROOM_HEIGHT 7
+#macro OBSTACLE -9

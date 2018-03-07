@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "25c4572d-8318-4b44-83c7-f118b02b27d6",
+            "Value": {
+                "id": "dfc8f81f-0c8d-4094-8629-04b2d6bea298",
+                "resourcePath": "sprites\\spr_healthup\\spr_healthup.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "27553fc0-8ade-4125-a6e8-48a50a955c5d",
             "Value": {
                 "id": "a349c7e7-871e-4065-9a83-79619190150f",
