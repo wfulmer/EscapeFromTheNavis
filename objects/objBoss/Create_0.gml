@@ -1,12 +1,18 @@
 /// @description Insert description here
 // You can write your code in this editor
-enum pattern{
+enum pattern{  //states that control the boss pattern
 healthy,
 somewhat_healthy,
 low_health,
 deseperate_health
 }
+boss_hp=100; // health
+boss_spits=5; // howmany spits the boss can do
+boss_spit_rate=5;// how fast the boss can spit
+boss_spawners=5; // how many spawners can the boss make
+boss_cooldown=0;// cooldown
 
+done=false;
 boss_status=pattern.healthy
 
 timeline_index=time_healthy;
