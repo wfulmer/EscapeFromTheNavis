@@ -76,13 +76,17 @@ cooldown=cooldown-1;
  {
 	  removesuit()
  }
+ 
  //use suit poweruup
+ /*
   if(!keyboard_check(ord("Z")) && gamepad_button_check_pressed(0,gp_shoulderr))
  {
 	 usesuitpowerup() 
 	 
- }
+ }*/
+ 
  //use healthpowerup
+ /*
   if(!keyboard_check(ord("X")) && gamepad_button_check_pressed(0,gp_shoulderrb))
  {
 	usehealthpowerup();
@@ -111,4 +115,4 @@ switch (protagonistState)
 		break;
 	}
 	
-}
+}*/
