@@ -2,5 +2,5 @@
 // You can write your code in this editor
 if(hp< 100){
 	usehealthpowerup();
+	with(other) instance_destroy();
 }
-with(other) instance_destroy();

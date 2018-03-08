@@ -11,9 +11,9 @@
 		protagonistState=state.suit
 		audio_play_sound(soundsuiton,0,false);
 		sprite_index=sprPlayerSuitDown
-		curr_firerate=5;
-		curr_bulletspeed=16;
-		curr_movement1=10;
+		curr_firerate=suit_frate;
+		curr_bulletspeed=suit_bspeed;
+		curr_movement=suit_movement;
 		image_index=0;
 		alarm[0]=30*3;
 		instance_destroy(objSuit);

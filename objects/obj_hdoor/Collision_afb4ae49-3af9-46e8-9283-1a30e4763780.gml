@@ -2,9 +2,9 @@
 //also move view to the next room
 
 if(!global.islocked && other.x < x){//if player above the door
-	other.x	= other.x + 128;
+	other.x	= other.x + 120;
 	camera_set_view_pos(view_camera[0],camera_get_view_x(view_camera[0])+768, camera_get_view_y(view_camera[0]));
 }else if(!global.islocked && other.x > x){//if player is below the door
-	other.x	= other.x - 128;
+	other.x	= other.x - 120;
 	camera_set_view_pos(view_camera[0],camera_get_view_x(view_camera[0])-768, camera_get_view_y(view_camera[0]));
 }

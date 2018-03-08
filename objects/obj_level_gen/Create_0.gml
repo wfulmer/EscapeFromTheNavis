@@ -1,4 +1,24 @@
 /// @description create the level
+//layouts
+
+lay_grid = ds_grid_create(9,1);
+
+temp = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+
+for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH+2; i++){
+		temp[# i,j] = VOID;
+		if( j == 3 && i>0 && i<10){//then insert the layout
+			temp[# i, j] = OBSTACLE;
+		}
+		if(i == 5 && j>0 && j<6){
+			temp[# i, j] = OBSTACLE;
+		}
+	}
+}
+lay_grid[# 0, 0] = temp;
+
+
 //set the grid width and height
 var width = room_width div CELL_WIDTH;
 var height = room_height div CELL_HEIGHT;
@@ -166,13 +186,17 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 					//grid[# cx, cy] = FLOOR;
 					if(ry == 0 && rx == 0 && room_grid[# j, i] == mroom){//if in top left corner of room and you aren't in initial room
 						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);//place spawner in top left corner of each room
-						show_debug_message("spawner made");
+						//show_debug_message("spawner made");
 					}
-					var temp = lay_list[| 0];
-					if(temp[# rx, ry] == OBSTACLE){
-						grid[# cx,cy] = OBSTACLE;	
-					} else if(temp[# rx,ry] == VOID){
+
+						var temp = lay_grid[# 0, 0];//get the first layout
+						if(temp[# rx, ry] == OBSTACLE){ //if its an obstacle, set it as such
+							grid[# cx,cy] = OBSTACLE;	
+						} else if(temp[# rx, ry] == VOID){ //if it isn't, set it as a floor tile
 						grid[# cx, cy] = FLOOR;
+						}
+					if(j == 4 && i == 4){//if starting room
+						grid[# cx,cy] = FLOOR;
 					}
 					cx++;
 				}
@@ -208,14 +232,14 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 	for(var rx = 1; rx<width-1; rx++){
 		
 		if(grid[# rx, ry] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
-			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR) grid[# rx-1, ry] = WALL;
-			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR) grid[# rx, ry+1] = WALL;
-			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR) grid[# rx, ry-1] = WALL;
-			if(grid[# rx+1, ry+1] != FLOOR && grid[# rx+1, ry+1] != VDOOR && grid[# rx+1, ry+1] != HDOOR) grid[# rx+1, ry+1] = WALL;
-			if(grid[# rx-1, ry-1] != FLOOR && grid[# rx-1, ry-1] != VDOOR && grid[# rx-1, ry-1] != HDOOR) grid[# rx-1, ry-1] = WALL;
-			if(grid[# rx+1, ry-1] != FLOOR && grid[# rx+1, ry-1] != VDOOR && grid[# rx+1, ry-1] != HDOOR) grid[# rx+1, ry-1] = WALL;
-			if(grid[# rx-1, ry+1] != FLOOR && grid[# rx-1, ry+1] != VDOOR && grid[# rx-1, ry+1] != HDOOR) grid[# rx-1, ry+1] = WALL;
+			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR && grid[# rx+1, ry] != OBSTACLE) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
+			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR && grid[# rx-1, ry] != OBSTACLE) grid[# rx-1, ry] = WALL;
+			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR && grid[# rx, ry+1] != OBSTACLE) grid[# rx, ry+1] = WALL;
+			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR  && grid[# rx, ry-1] != OBSTACLE) grid[# rx, ry-1] = WALL;
+			if(grid[# rx+1, ry+1] != FLOOR && grid[# rx+1, ry+1] != VDOOR && grid[# rx+1, ry+1] != HDOOR && grid[# rx+1, ry+1] != OBSTACLE) grid[# rx+1, ry+1] = WALL;
+			if(grid[# rx-1, ry-1] != FLOOR && grid[# rx-1, ry-1] != VDOOR && grid[# rx-1, ry-1] != HDOOR && grid[# rx-1, ry-1] != OBSTACLE) grid[# rx-1, ry-1] = WALL;
+			if(grid[# rx+1, ry-1] != FLOOR && grid[# rx+1, ry-1] != VDOOR && grid[# rx+1, ry-1] != HDOOR && grid[# rx+1, ry-1] != OBSTACLE) grid[# rx+1, ry-1] = WALL;
+			if(grid[# rx-1, ry+1] != FLOOR && grid[# rx-1, ry+1] != VDOOR && grid[# rx-1, ry+1] != HDOOR && grid[# rx-1, ry+1] != OBSTACLE) grid[# rx-1, ry+1] = WALL;
 		}
 	}
 }
@@ -237,7 +261,7 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 			tilemap_set_at_pixel(global.back_tilemap,11,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
 		}else if (grid[# rx, ry] == OBSTACLE){
-			tilemap_set_at_pixel(global.back_tilemap,4,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			tilemap_set_at_pixel(global.back_tilemap,12,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",objblock);
 		}
 	}

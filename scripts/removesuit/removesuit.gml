@@ -10,9 +10,9 @@ switch protagonistState
 		 protagonistState=state.human
 		
 		 audio_play_sound(soundleavesuit,0,false);
-		 curr_firerate=20;
-		 curr_bulletspeed=10;
-		 curr_movement=4;
+		 curr_firerate=fireRate;
+		 curr_bulletspeed=bulletspeed;
+		 curr_movement=movement;
 		 sprite_index=sprPlayerDown
 		 image_index=0
 		 
