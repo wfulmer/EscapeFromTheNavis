@@ -13,3 +13,8 @@ draw_text(camera_get_view_x(view_camera[0])+10,camera_get_view_y(view_camera[0])
 //draw_text(camera_get_view_x(view_camera[0])+74,camera_get_view_y(view_camera[0])+140,"Suitup: "+string((objPlayer.inventory[?"suitup"])))
 //draw_text(camera_get_view_x(view_camera[0])+74,camera_get_view_y(view_camera[0])+160,"Score: "+string(scoresofarfar))
 }
+
+if(game_over = true){
+	draw_text_color(camera_get_view_x(view_camera[0])+416,camera_get_view_y(view_camera[0])+288,"GAME OVER\nPress Alt + R to return to menu",c_black,c_black,c_black,c_black,1);
+	//draw_text(camera_get_view_x(view_camera[0]) +400,camera_get_view_y(view_camera[0])+400, "GAME OVER\nPress Alt + R to return to menu");	
+}

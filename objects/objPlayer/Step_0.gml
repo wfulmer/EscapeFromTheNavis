@@ -93,8 +93,8 @@ cooldown=cooldown-1;
  }
  */
 if(hp<=0){
+	objHUD.game_over = true;
 	instance_destroy();
-	//display GAME OVER
 }
 
 switch (protagonistState)
