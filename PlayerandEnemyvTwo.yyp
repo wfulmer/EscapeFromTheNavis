@@ -823,6 +823,14 @@
             }
         },
         {
+            "Key": "e2ec964d-876d-469a-b86a-bb13d3b3aa28",
+            "Value": {
+                "id": "76cc25e5-c50f-4b0b-a9a7-3871bae1f0b9",
+                "resourcePath": "objects\\obj_tut_writer\\obj_tut_writer.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e4b2ef4d-271a-45a9-9acc-6f5029285613",
             "Value": {
                 "id": "b40c76ce-b8cb-43ad-b7af-78a3f6be92ed",

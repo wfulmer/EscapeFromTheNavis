@@ -201,6 +201,8 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 					if(ry == 0 && rx == 0 && room_grid[# j, i] == mroom){//if in top left corner of room and you aren't in initial room
 						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);//place spawner in top left corner of each room
 						//show_debug_message("spawner made");
+					}else if (ry == 3 && rx == 4 && room_grid[# j, i] == smroom){
+						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_tut_writer);//place spawner in top left corner of each room	
 					}
 
 					

@@ -1,5 +1,5 @@
 /// @description check if all enemies are dead and unlock doors if true.
-
+//also spawns a reward depending on the chance
 if (!instance_exists(objEnemyBase)){
 	global.islocked	= false;
 	if(spawn_active == false && reward == false){
