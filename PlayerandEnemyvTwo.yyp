@@ -871,6 +871,14 @@
             }
         },
         {
+            "Key": "f3b0be10-56c1-4a59-98bf-e81c57efead7",
+            "Value": {
+                "id": "8c3e1ca6-ea08-4aec-a038-f3c3588369f0",
+                "resourcePath": "objects\\obj_boss_spawner\\obj_boss_spawner.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
             "Value": {
                 "id": "a437953d-886d-4cb2-9fae-5b0d6eaa94b5",

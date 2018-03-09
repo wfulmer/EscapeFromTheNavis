@@ -1,2 +1,2 @@
 // move toward player radial attack
-instance_create_layer(x,y,"Lower",objboss_radialattck);
+instance_create_layer(x,y,"Obstacles",objboss_radialattck);

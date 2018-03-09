@@ -1,7 +1,7 @@
 /// @description create the level
 randomize();//randomize so it isn't the same pattern each time
-//layouts
 
+//layouts: I hard code each one into a grid for use later
 lay_grid = ds_grid_create(9,1);
 
 temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
@@ -42,6 +42,7 @@ room_grid = ds_grid_create(9,9);
 var mroom = 5;
 var void = 6;
 var smroom = 7;
+var bmroom = 8;
 //Fill the grid with the void
 ds_grid_set_region(grid,0,0,width-1, height-1,VOID);
 
@@ -183,8 +184,51 @@ for(var i = 0; i<9; i++){
 if(tot_rooms < TOTAL_ROOMS){
 	room_restart();
 }
-
+var adj_rooms = 0;
+var low_room_x = 0;
+var low_room_y = 0;
+var low_room_count = 0;
 //TODO: assign boss room
+for(var i = 0; i<9; i++){//iterate through room grid.
+	for(var j = 0; j<9; j++){
+		if(room_grid[# j, i] == mroom){//for each room besides the starting room
+			//check how many adjacent rooms there are
+			if(j>0 && room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom){//room to right?
+				adj_rooms++;
+			}
+			if(j<8 && room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom){//room to left?
+				adj_rooms++;
+			}
+			if(i>0 && room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom){//room above?
+				adj_rooms++;
+			}
+			if(i<8 && room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom){//room below?
+				adj_rooms++;
+			}
+			if(low_room_count == 0){//grab the first room
+				low_room_x = j;
+				low_room_y = i;
+				low_room_count = adj_rooms;
+			}
+			//update lowest room
+			if(adj_rooms <= low_room_count){
+				if(adj_rooms < low_room_count){//if there are less connections
+					low_room_x = j;
+					low_room_y = i;
+					low_room_count = adj_rooms;
+				}else if(abs(4-low_room_x + 4-low_room_y) < abs(4-j + 4-i)){//if its the same amount of connections, but farther away from the initial room
+					low_room_x = j;
+					low_room_y = i;
+					low_room_count = adj_rooms;
+				}
+			}
+			adj_rooms = 0;
+		}
+	}
+}
+//definitely needs testing!!!
+room_grid[# low_room_x, low_room_y] = bmroom; //set the room with least connections as the boss room
+//(later) make sure the room has no obstacles and spawn the boss there?
 
 for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 	for(var j = 0; j<9; j++){
@@ -193,7 +237,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 		var y_off = i*(MROOM_HEIGHT+1)+1;
 		cx = x_off;
 		cy = y_off;
-		if(room_grid[# j, i] == mroom || room_grid[# j, i] == smroom){
+		if(room_grid[# j, i] == mroom || room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){
 			var temp = lay_grid[# irandom(1), 0];//get a random layout
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
 				for(var rx = 0; rx <MROOM_WIDTH; rx++){
@@ -203,6 +247,8 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 						//show_debug_message("spawner made");
 					}else if (ry == 3 && rx == 4 && room_grid[# j, i] == smroom){
 						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_tut_writer);//place spawner in top left corner of each room	
+					}else if (ry == 0 && rx == 0 &&  room_grid[# j, i] == bmroom){//if top left corner of room and this is boss room 
+						instance_create_layer(cx*CELL_WIDTH, cy*CELL_HEIGHT, "Instances", obj_boss_spawner);
 					}
 
 					
@@ -211,7 +257,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 					} else if(temp[# rx, ry] == VOID){ //if it isn't, set it as a floor tile
 						grid[# cx, cy] = FLOOR;
 					}
-					if(j == 4 && i == 4){//if starting room
+					if(room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){//if starting room
 						grid[# cx,cy] = FLOOR;
 					}
 					cx++;
@@ -237,7 +283,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			if(j != 0 && (room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom)){
 				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
 			}
-			
+			//add boss room doors here
 		}
 	}
 }
