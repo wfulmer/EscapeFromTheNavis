@@ -76,19 +76,26 @@ cooldown=cooldown-1;
  {
 	  removesuit()
  }
+ 
  //use suit poweruup
+ /*
   if(!keyboard_check(ord("Z")) && gamepad_button_check_pressed(0,gp_shoulderr))
  {
 	 usesuitpowerup() 
 	 
- }
+ }*/
+ 
  //use healthpowerup
+ /*
   if(!keyboard_check(ord("X")) && gamepad_button_check_pressed(0,gp_shoulderrb))
  {
 	usehealthpowerup();
  }
- 
-if(hp<=0)instance_destroy();
+ */
+if(hp<=0){
+	objHUD.game_over = true;
+	instance_destroy();
+}
 
 switch (protagonistState)
 {

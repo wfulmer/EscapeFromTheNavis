@@ -7,7 +7,7 @@
 	 case state.human:
 	 
 	 {
-		if(instance_place(x,y,objSuitUp))
+		if(suitHealth < 100)
 		{
 				suitHealth = 100;
 				audio_play_sound(soundusepowerup,0,false)

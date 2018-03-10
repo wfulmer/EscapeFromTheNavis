@@ -7,15 +7,7 @@ enemy_base_damage=objSpawnController.baseDamage;
 else
 {
 enemy_base_health=30;
-enemy_base_damage=25;
+enemy_base_damage=15;
 }
-enemy_base_speed= irandom_range(3,8);
-alarm[0]=30*3;
-
-
-	 
-
-		 
-	
-	 
-
+enemy_base_speed= 4.2;//irandom_range(3,8)
+//alarm[0]=30*3;

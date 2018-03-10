@@ -1,4 +1,37 @@
 /// @description create the level
+randomize();//randomize so it isn't the same pattern each time
+
+//layouts: I hard code each one into a grid for use later
+lay_grid = ds_grid_create(9,1);
+
+temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+
+for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH+2; i++){
+		temp_layout[# i,j] = VOID;
+		if( j == 3 && i>0 && i<10){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if(i == 5 && j>0 && j<6){
+			temp_layout[# i, j] = OBSTACLE;
+		}
+	}
+}
+lay_grid[# 0, 0] = temp_layout;
+temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH+2; i++){
+		temp_layout[# i,j] = VOID;
+		if( (j <2 && i<4) || (j<2 && i>6)){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if((j>4 && i<4) || (j>4 && i>6)){
+			temp_layout[# i, j] = OBSTACLE;	
+		}
+	}
+}
+lay_grid[# 1,0] = temp_layout;
+
 //set the grid width and height
 var width = room_width div CELL_WIDTH;
 var height = room_height div CELL_HEIGHT;
@@ -8,10 +41,11 @@ grid = ds_grid_create(width,height);
 room_grid = ds_grid_create(9,9);
 var mroom = 5;
 var void = 6;
-
+var smroom = 7;
+var bmroom = 8;
 //Fill the grid with the void
 ds_grid_set_region(grid,0,0,width-1, height-1,VOID);
-randomize();//randomize so it isn't the same pattern each time
+
 
 //"create" the controller in the center of the grid
 var cx = width div 2;
@@ -26,7 +60,7 @@ instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2,"I
 //start from initial room
 var rx = 4;
 var ry = 4;
-room_grid[# rx, ry] = mroom;
+room_grid[# rx, ry] = smroom;
 
 //determine how many rooms per branch
 var branches = irandom_range(2,3);
@@ -95,7 +129,7 @@ for(var i = 0; i<branches; i++){//for each branch
 			rdir = bdir;
 		}
 		
-			if(rdir == 0 && up == false && ry != 0 && room_grid[# rx, ry-1] != mroom){
+			if(rdir == 0 && up == false && ry != 0 && room_grid[# rx, ry-1] != mroom && room_grid[# rx, ry-1] != smroom){
 				room_grid[# rx, ry-1] = mroom;
 				up = false;
 				right = false;
@@ -104,7 +138,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				ry--;
 				curr_rooms++;
 				j = 0;
-			}else if(rdir == 1 && right == false && rx != 8 && room_grid[# rx+1, ry] != mroom){
+			}else if(rdir == 1 && right == false && rx != 8 && room_grid[# rx+1, ry] != mroom && room_grid[# rx+1, ry] != smroom){
 				room_grid[# rx+1, ry] = mroom;
 				up = false;
 				right = false;
@@ -113,7 +147,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				rx++;
 				curr_rooms++;
 				j = 0;
-			}else if(rdir == 2 && down == false && ry != 8 && room_grid[# rx, ry+1] != mroom){
+			}else if(rdir == 2 && down == false && ry != 8 && room_grid[# rx, ry+1] != mroom && room_grid[# rx, ry+1] != smroom){
 				room_grid[# rx, ry+1] = mroom;
 				up = true;
 				right = false;
@@ -122,7 +156,7 @@ for(var i = 0; i<branches; i++){//for each branch
 				curr_rooms++;
 				ry++;
 				j = 0;
-			}else if(rdir == 3 && left == false && rx != 0 && room_grid[# rx-1, ry] != mroom){
+			}else if(rdir == 3 && left == false && rx != 0 && room_grid[# rx-1, ry] != mroom && room_grid[# rx-1, ry] != smroom){
 				room_grid[# rx-1, ry] = mroom;
 				up = false;
 				right = true;
@@ -150,8 +184,51 @@ for(var i = 0; i<9; i++){
 if(tot_rooms < TOTAL_ROOMS){
 	room_restart();
 }
-
-//set viewport to 4*(MROOM_WIDTH+!)+1, 4*(MROOM_HEIGHT+1)+1
+var adj_rooms = 0;
+var low_room_x = 0;
+var low_room_y = 0;
+var low_room_count = 0;
+//TODO: assign boss room
+for(var i = 0; i<9; i++){//iterate through room grid.
+	for(var j = 0; j<9; j++){
+		if(room_grid[# j, i] == mroom){//for each room besides the starting room
+			//check how many adjacent rooms there are
+			if(j>0 && room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom){//room to right?
+				adj_rooms++;
+			}
+			if(j<8 && room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom){//room to left?
+				adj_rooms++;
+			}
+			if(i>0 && room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom){//room above?
+				adj_rooms++;
+			}
+			if(i<8 && room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom){//room below?
+				adj_rooms++;
+			}
+			if(low_room_count == 0){//grab the first room
+				low_room_x = j;
+				low_room_y = i;
+				low_room_count = adj_rooms;
+			}
+			//update lowest room
+			if(adj_rooms <= low_room_count){
+				if(adj_rooms < low_room_count){//if there are less connections
+					low_room_x = j;
+					low_room_y = i;
+					low_room_count = adj_rooms;
+				}else if(abs(4-low_room_x + 4-low_room_y) < abs(4-j + 4-i)){//if its the same amount of connections, but farther away from the initial room
+					low_room_x = j;
+					low_room_y = i;
+					low_room_count = adj_rooms;
+				}
+			}
+			adj_rooms = 0;
+		}
+	}
+}
+//definitely needs testing!!!
+room_grid[# low_room_x, low_room_y] = bmroom; //set the room with least connections as the boss room
+//(later) make sure the room has no obstacles and spawn the boss there?
 
 for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 	for(var j = 0; j<9; j++){
@@ -160,13 +237,28 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 		var y_off = i*(MROOM_HEIGHT+1)+1;
 		cx = x_off;
 		cy = y_off;
-		if(room_grid[# j, i] == mroom){
+		if(room_grid[# j, i] == mroom || room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){
+			var temp = lay_grid[# irandom(1), 0];//get a random layout
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
 				for(var rx = 0; rx <MROOM_WIDTH; rx++){
-					grid[# cx, cy] = FLOOR;
-					if(ry == 0 && rx == 0){//place spawner in top left corner of each room
-						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);
-						show_debug_message("spawner made");
+					//grid[# cx, cy] = FLOOR;
+					if(ry == 0 && rx == 0 && room_grid[# j, i] == mroom){//if in top left corner of room and you aren't in initial room
+						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_mroom_spawner);//place spawner in top left corner of each room
+						//show_debug_message("spawner made");
+					}else if (ry == 3 && rx == 4 && room_grid[# j, i] == smroom){
+						instance_create_layer(cx*CELL_WIDTH,cy*CELL_HEIGHT,"Instances", obj_tut_writer);//place spawner in top left corner of each room	
+					}else if (ry == 0 && rx == 0 &&  room_grid[# j, i] == bmroom){//if top left corner of room and this is boss room 
+						instance_create_layer(cx*CELL_WIDTH, cy*CELL_HEIGHT, "Instances", obj_boss_spawner);
+					}
+
+					
+					if(temp[# rx, ry] == OBSTACLE){ //if its an obstacle, set it as such
+						grid[# cx,cy] = OBSTACLE;	
+					} else if(temp[# rx, ry] == VOID){ //if it isn't, set it as a floor tile
+						grid[# cx, cy] = FLOOR;
+					}
+					if(room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){//if starting room
+						grid[# cx,cy] = FLOOR;
 					}
 					cx++;
 				}
@@ -176,22 +268,22 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			cy= cy - (MROOM_HEIGHT); //cx cy are now back to top left corner of room
 			
 			//if there is a room above
-			if(i != 0 && room_grid[# j, i-1] == mroom){
+			if(i != 0 && (room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom)){
 				grid[# cx+5, cy-1] = VDOOR;//make hallway was FLOOR
 			}
 			//if there is a room to the right
-			if(j!= 8 && room_grid[# j+1, i] == mroom){
+			if(j!= 8 && (room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom)){
 				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
 			}
 			//if there is a room below
-			if(i != 8 && room_grid[# j, i+1] == mroom){
+			if(i != 8 && (room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom)){
 				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;//make hallway
 			}
 			//if there is a room to the left
-			if(j != 0 && room_grid[# j-1, i] == mroom){
+			if(j != 0 && (room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom)){
 				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
 			}
-			
+			//add boss room doors here
 		}
 	}
 }
@@ -202,14 +294,14 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 	for(var rx = 1; rx<width-1; rx++){
 		
 		if(grid[# rx, ry] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
-			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR) grid[# rx-1, ry] = WALL;
-			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR) grid[# rx, ry+1] = WALL;
-			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR) grid[# rx, ry-1] = WALL;
-			if(grid[# rx+1, ry+1] != FLOOR && grid[# rx+1, ry+1] != VDOOR && grid[# rx+1, ry+1] != HDOOR) grid[# rx+1, ry+1] = WALL;
-			if(grid[# rx-1, ry-1] != FLOOR && grid[# rx-1, ry-1] != VDOOR && grid[# rx-1, ry-1] != HDOOR) grid[# rx-1, ry-1] = WALL;
-			if(grid[# rx+1, ry-1] != FLOOR && grid[# rx+1, ry-1] != VDOOR && grid[# rx+1, ry-1] != HDOOR) grid[# rx+1, ry-1] = WALL;
-			if(grid[# rx-1, ry+1] != FLOOR && grid[# rx-1, ry+1] != VDOOR && grid[# rx-1, ry+1] != HDOOR) grid[# rx-1, ry+1] = WALL;
+			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR && grid[# rx+1, ry] != OBSTACLE) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
+			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR && grid[# rx-1, ry] != OBSTACLE) grid[# rx-1, ry] = WALL;
+			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR && grid[# rx, ry+1] != OBSTACLE) grid[# rx, ry+1] = WALL;
+			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR  && grid[# rx, ry-1] != OBSTACLE) grid[# rx, ry-1] = WALL;
+			if(grid[# rx+1, ry+1] != FLOOR && grid[# rx+1, ry+1] != VDOOR && grid[# rx+1, ry+1] != HDOOR && grid[# rx+1, ry+1] != OBSTACLE) grid[# rx+1, ry+1] = WALL;
+			if(grid[# rx-1, ry-1] != FLOOR && grid[# rx-1, ry-1] != VDOOR && grid[# rx-1, ry-1] != HDOOR && grid[# rx-1, ry-1] != OBSTACLE) grid[# rx-1, ry-1] = WALL;
+			if(grid[# rx+1, ry-1] != FLOOR && grid[# rx+1, ry-1] != VDOOR && grid[# rx+1, ry-1] != HDOOR && grid[# rx+1, ry-1] != OBSTACLE) grid[# rx+1, ry-1] = WALL;
+			if(grid[# rx-1, ry+1] != FLOOR && grid[# rx-1, ry+1] != VDOOR && grid[# rx-1, ry+1] != HDOOR && grid[# rx-1, ry+1] != OBSTACLE) grid[# rx-1, ry+1] = WALL;
 		}
 	}
 }
@@ -230,11 +322,15 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 		}else if (grid[# rx, ry] == HDOOR){
 			tilemap_set_at_pixel(global.back_tilemap,11,rx*CELL_WIDTH,ry*CELL_HEIGHT);
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
+		}else if (grid[# rx, ry] == OBSTACLE){
+			//tilemap_set_at_pixel(global.back_tilemap,12,rx*CELL_WIDTH,ry*CELL_HEIGHT);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Instances",objblock);
 		}
 	}
 }
 //create the camera
-//view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90);
-
+//view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90)
+ds_grid_destroy(room_grid);
+ds_grid_destroy(grid);
 //Set global variables????
 global.islocked = true;

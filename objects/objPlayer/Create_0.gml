@@ -9,12 +9,14 @@ bulletPath =0; // direction of bullet when spawned
 bulletspeed=6;
 fireRate=20;
 
-//suit stats
+//suit stats wont not need this
+
 suitHealth=0;
 suit_movement = movement + movement/2;
 suit_bspeed = bulletspeed*1.5;
 suit_frate = fireRate/2;
-suit_tickdown = 15;
+
+suit_tickdown = 20;
 
 //current stats
 curr_movement = movement;

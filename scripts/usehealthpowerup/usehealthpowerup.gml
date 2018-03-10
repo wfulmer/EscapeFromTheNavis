@@ -1,11 +1,11 @@
-// use health power up
+/// @description use health power up
+	if(objPlayer.hp >= 70){
+		objPlayer.hp = 100;
+		audio_play_sound(soundusepowerup,0,false);
+	}else{
+		objPlayer.hp= objPlayer.hp+30;
+		audio_play_sound(soundusepowerup,0,false);
+	}	
+	
 
-/// @description Insert description here
-// You can write your code in this editor
-if(inventory[?"healthup"]>=1)
-			{
-				hp=hp+30;
-				audio_play_sound(soundusepowerup,0,false)
-				inventory[?"healthup"]=inventory[?"healthup"]-1;
 				
-			} 
