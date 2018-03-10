@@ -1,2 +1,2 @@
-instance_create_layer(x,y,"Obstacles",objboss_acid);
+instance_create_layer(x,y,"Instances",objboss_acid);
 
