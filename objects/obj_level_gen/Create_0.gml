@@ -4,10 +4,10 @@ randomize();//randomize so it isn't the same pattern each time
 //layouts: I hard code each one into a grid for use later
 lay_grid = ds_grid_create(9,1);
 
-temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+temp_layout = ds_grid_create(MROOM_WIDTH,MROOM_HEIGHT);
 
-for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
-	for(var i = 0; i<MROOM_WIDTH+2; i++){
+for(var j = 0; j<MROOM_HEIGHT; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH; i++){
 		temp_layout[# i,j] = VOID;
 		if( j == 3 && i>0 && i<10){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
@@ -18,9 +18,9 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 	}
 }
 lay_grid[# 0, 0] = temp_layout;
-temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
-for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
-	for(var i = 0; i<MROOM_WIDTH+2; i++){
+temp_layout = ds_grid_create(MROOM_WIDTH,MROOM_HEIGHT);
+for(var j = 0; j<MROOM_HEIGHT; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH; i++){
 		temp_layout[# i,j] = VOID;
 		if( (j <2 && i<4) || (j<2 && i>6)){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
@@ -29,11 +29,12 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 			temp_layout[# i, j] = OBSTACLE;	
 		}
 	}
+}
 	// New layouts 
-	lay_grid[# 0, 0] = temp_layout;
-temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
-for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
-	for(var i = 0; i<MROOM_WIDTH+2; i++){
+lay_grid[# 1, 0] = temp_layout;
+temp_layout = ds_grid_create(MROOM_WIDTH,MROOM_HEIGHT);
+for(var j = 0; j<MROOM_HEIGHT; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH; i++){
 		temp_layout[# i,j] = VOID;
 		if( (j == 4 && i>1 && i<4) || (j == 5 && i>1 && i<4) || (j == 6 && i>1 && i<4) ){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
@@ -47,10 +48,10 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 	}
 }
 
-lay_grid[# 0, 0] = temp_layout;
-temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
-for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
-	for(var i = 0; i<MROOM_WIDTH+2; i++){
+lay_grid[# 2, 0] = temp_layout;
+temp_layout = ds_grid_create(MROOM_WIDTH,MROOM_HEIGHT);
+for(var j = 0; j<MROOM_HEIGHT; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH; i++){
 		temp_layout[# i,j] = VOID;
 		if( (j == 1 && i>2 && i<8 )){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
@@ -67,8 +68,8 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 	}
 }
 
-}
-lay_grid[# 1,0] = temp_layout;
+
+lay_grid[# 3,0] = temp_layout;
 
 //set the grid width and height
 var width = room_width div CELL_WIDTH;
@@ -276,7 +277,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 		cx = x_off;
 		cy = y_off;
 		if(room_grid[# j, i] == mroom || room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){
-			var temp = lay_grid[# irandom(1), 0];//get a random layout
+			var temp = lay_grid[# irandom(3), 0];//get a random layout
 			for(var ry = 0; ry <MROOM_HEIGHT; ry++){
 				for(var rx = 0; rx <MROOM_WIDTH; rx++){
 					//grid[# cx, cy] = FLOOR;
@@ -295,7 +296,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 					} else if(temp[# rx, ry] == VOID){ //if it isn't, set it as a floor tile
 						grid[# cx, cy] = FLOOR;
 					}
-					if(room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){//if starting room
+					if(room_grid[# j, i] == smroom || room_grid[# j, i] == bmroom){//if starting room or boss room
 						grid[# cx,cy] = FLOOR;
 					}
 					cx++;
