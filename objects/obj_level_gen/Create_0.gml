@@ -29,6 +29,44 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 			temp_layout[# i, j] = OBSTACLE;	
 		}
 	}
+	// New layouts 
+	lay_grid[# 0, 0] = temp_layout;
+temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH+2; i++){
+		temp_layout[# i,j] = VOID;
+		if( (j == 4 && i>1 && i<4) || (j == 5 && i>1 && i<4) || (j == 6 && i>1 && i<4) ){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if((j == 2 && i>4 && i<6) || (j == 3 && i>4 && i<6) || (j == 4 && i>4 && i<6 )){
+			temp_layout[# i, j] = OBSTACLE;	
+		}
+		if(( j == 0 && i>6 && i<9) || ( j == 1 && i>6 && i<9) || ( j == 2 && i>6 && i<9)){
+			temp_layout[# i, j] = OBSTACLE;
+		}
+	}
+}
+
+lay_grid[# 0, 0] = temp_layout;
+temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
+	for(var i = 0; i<MROOM_WIDTH+2; i++){
+		temp_layout[# i,j] = VOID;
+		if( (j == 1 && i>2 && i<8 )){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if( (j == 5 && i>2 && i<8 )){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if( (j == 1 && i>0 && i<2 ) || (j == 5 && i>0 && i<2) || (j == 4 && i>0 && i<2) || (j == 3 && i>0 && i<2) || (j == 2 && i>0 && i<2)){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+		if( (j == 1 && i>8 && i<10 ) || (j == 5 && i>8 && i<10) || (j == 4 && i>8 && i<10) || (j == 3 && i>8 && i<10) || (j == 2 && i>8 && i<10)){//then insert the layout
+			temp_layout[# i, j] = OBSTACLE;
+		}
+	}
+}
+
 }
 lay_grid[# 1,0] = temp_layout;
 
@@ -324,7 +362,7 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Obstacles",obj_hdoor);//add a door object	
 		}else if (grid[# rx, ry] == OBSTACLE){
 			//tilemap_set_at_pixel(global.back_tilemap,12,rx*CELL_WIDTH,ry*CELL_HEIGHT);
-			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Instances",objblock);
+			instance_create_layer(rx*CELL_WIDTH+CELL_WIDTH/2,ry*CELL_HEIGHT+CELL_HEIGHT/2,"Instances",obj_crate);
 		}
 	}
 }
