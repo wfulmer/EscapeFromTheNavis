@@ -9,3 +9,5 @@
 #macro MROOM_WIDTH 11
 #macro MROOM_HEIGHT 7
 #macro OBSTACLE -9
+#macro BVDOOR -10
+#macro BHDOOR -11 

@@ -7,7 +7,7 @@ cooldown=0; // cooldown controller of bullet
 hp=100;
 bulletPath =0; // direction of bullet when spawned
 bulletspeed=6;
-fireRate=20;
+fireRate=10;
 
 //suit stats wont not need this
 
