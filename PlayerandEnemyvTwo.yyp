@@ -831,6 +831,14 @@
             }
         },
         {
+            "Key": "dac637da-5824-4c55-9b27-6b1b2510aa02",
+            "Value": {
+                "id": "2d9bb484-1d56-4781-a53b-647ae2e8570a",
+                "resourcePath": "sprites\\spr_SpiderBossShield\\spr_SpiderBossShield.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "dc9fdb0c-0a09-4ac4-a674-e1a0dc7c9357",
             "Value": {
                 "id": "9a1489bc-c721-463c-9a89-0f0027c2afe2",
