@@ -12,11 +12,13 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 		if( j == 3 && i>1 && i<9){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
 		}
-		if(i == 5 && j>0 && j<6){
+		if(i == 5 && j>1 && j<5){
 			temp_layout[# i, j] = OBSTACLE;
 		}
 	}
 }
+
+// 4 box layout 
 lay_grid[# 0, 0] = temp_layout;
 temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
 for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
@@ -30,7 +32,7 @@ for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 		}
 	}
 }
-	// New layouts 
+	// New layouts // 3 box room 
 	lay_grid[# 1, 0] = temp_layout;
 temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
 for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
