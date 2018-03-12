@@ -3,14 +3,14 @@
 with(other) {
 		switch protagonistState 
 	{
-		case state.human:
+	case state.human:
 		{
-			hp=hp-objEnemyBase.enemy_base_damage;
+			objPlayer.hp= objPlayer.hp-10;
 			break;
 		}
 		case state.suit:
 		{
-			suitHealth=suitHealth-10;
+			objPlayer.suitHealth= objPlayer.suitHealth-10;
 			break;	
 		}
 	}
