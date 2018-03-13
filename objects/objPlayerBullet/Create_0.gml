@@ -6,21 +6,4 @@ audio_play_sound(soundbullet,-1,false);
 speed=objPlayer.curr_bulletspeed;
 direction=objPlayer.bulletPath;
 image_angle=direction;
-
-switch objPlayer.protagonistState
-{
-	case state.human:
-	{
-		bulletDamage=10;
-		break;
-	}
-	
-	case state.suit:
-	{
-		bulletDamage=20;
-		break;
-	}
-	
-	
-	
-}
+bulletDamage=objPlayer.curr_damage;

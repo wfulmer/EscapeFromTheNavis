@@ -104,6 +104,7 @@ switch (protagonistState)
 		curr_movement = suit_movement;
 		curr_bulletspeed = suit_bspeed;
 		curr_firerate = suit_frate;
+		curr_damage=suit_damage;
 		break;
 	}
 	
@@ -111,7 +112,8 @@ switch (protagonistState)
 	{
 		curr_movement = movement;
 		curr_bulletspeed = bulletspeed;
-		curr_firerate = fireRate;	
+		curr_firerate = fireRate;
+		curr_damage=human_damage;
 		break;
 	}
 	
