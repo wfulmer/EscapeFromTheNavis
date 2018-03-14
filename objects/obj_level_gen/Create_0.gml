@@ -4,7 +4,7 @@ randomize();//randomize so it isn't the same pattern each time
 //layouts: I hard code each one into a grid for use later
 lay_grid = ds_grid_create(9,1);
 
-temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
+var temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
 // t shape layout 
 for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 	for(var i = 0; i<MROOM_WIDTH+2; i++){
@@ -237,6 +237,18 @@ var low_room_count = 0;
 for(var i = 0; i<9; i++){//iterate through room grid.
 	for(var j = 0; j<9; j++){
 		if(room_grid[# j, i] == mroom){//for each room besides the starting room
+			/*
+			//testing if we ignore adjacent rooms.
+			if(low_room_x == 0){
+				low_room_x = j;
+				low_room_y = i;
+			}
+			if(abs(4-low_room_x + 4-low_room_y) < abs(4-j + 4-i)){
+				low_room_x = j;
+				low_room_y = i;
+			}
+			*/
+			
 			//check how many adjacent rooms there are
 			if(j>0 && room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom){//room to right?
 				adj_rooms++;
@@ -268,6 +280,7 @@ for(var i = 0; i<9; i++){//iterate through room grid.
 				}
 			}
 			adj_rooms = 0;
+			
 		}
 	}
 }
@@ -314,34 +327,42 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			
 			//if there is a room above
 			if(i != 0 && (room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom)){
-				grid[# cx+5, cy-1] = VDOOR;//make hallway was FLOOR
+				if(grid[# cx+5, cy-1] != BVDOOR){
+					grid[# cx+5, cy-1] = VDOOR;
+				}
 			}
 			//if there is a room to the right
 			if(j!= 8 && (room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom)){
-				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
+				if(grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
+					grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;
+				}
 			}
 			//if there is a room below
 			if(i != 8 && (room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom)){
-				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;//make hallway
+				if(grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != BVDOOR){
+					grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;
+				}
 			}
 			//if there is a room to the left
 			if(j != 0 && (room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom)){
-				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;//make hallway
+				if(grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
+					grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;
+				}
 			}
 			//add boss room doors here
 			if(j != 0 && (room_grid[# j-1, i] == bmroom))
 			{
-				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = BHDOOR;//make hallway
+				grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = BHDOOR;
 			}
 			if(i != 8 && (room_grid[# j, i+1] == bmroom )){
-				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = BVDOOR;//make hallway
+				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = BVDOOR;
 			}
 			if(j!= 8 && (room_grid[# j+1, i] == bmroom)){
-				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = BHDOOR;//make hallway
+				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = BHDOOR;
 			}
 			//if there is a room above
 			if(i != 0 && (room_grid[# j, i-1] == bmroom )){
-				grid[# cx+5, cy-1] = BVDOOR;//make hallway was FLOOR
+				grid[# cx+5, cy-1] = BVDOOR;
 			}
 		}
 	}
@@ -352,8 +373,8 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 tile outside border to add walls
 	for(var rx = 1; rx<width-1; rx++){
 		
-		if(grid[# rx, ry] == FLOOR){//check if surrounding tiles are void, if so set as wall
-			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR && grid[# rx+1, ry] != OBSTACLE && grid[# rx+1, ry] != BHDOOR && grid[# rx+1, ry] != BVDOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type
+		if(grid[# rx, ry] == FLOOR || grid[# rx, ry] == OBSTACLE){//check if surrounding tiles are void, if so set as wall
+			if(grid[# rx+1, ry] != FLOOR && grid[# rx+1, ry] != VDOOR && grid[# rx+1, ry] != HDOOR && grid[# rx+1, ry] != OBSTACLE && grid[# rx+1, ry] != BHDOOR && grid[# rx+1, ry] != BVDOOR) grid[# rx+1, ry] = WALL;//could have 4 wall constants for each wall tile type?
 			if(grid[# rx-1, ry] != FLOOR && grid[# rx-1, ry] != VDOOR && grid[# rx-1, ry] != HDOOR && grid[# rx-1, ry] != OBSTACLE && grid[# rx-1, ry] != BHDOOR && grid[# rx-1, ry] != BVDOOR) grid[# rx-1, ry] = WALL;
 			if(grid[# rx, ry+1] != FLOOR && grid[# rx, ry+1] != VDOOR && grid[# rx, ry+1] != HDOOR && grid[# rx, ry+1] != OBSTACLE && grid[# rx, ry+1] != BHDOOR && grid[# rx, ry+1] != BVDOOR) grid[# rx, ry+1] = WALL;
 			if(grid[# rx, ry-1] != FLOOR && grid[# rx, ry-1] != VDOOR && grid[# rx, ry-1] != HDOOR && grid[# rx, ry-1] != OBSTACLE && grid[# rx, ry-1] != BHDOOR && grid[# rx, ry-1] != BVDOOR) grid[# rx, ry-1] = WALL;
@@ -399,5 +420,8 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 //view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90)
 ds_grid_destroy(room_grid);
 ds_grid_destroy(grid);
+ds_grid_destroy(lay_grid);
+
 //Set global variables????
 global.islocked = true;
+instance_destroy();
