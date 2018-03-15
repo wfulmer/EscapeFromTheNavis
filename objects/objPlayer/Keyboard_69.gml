@@ -1,5 +1,4 @@
 ///@description equip suit
-with(objHUD){if(suitHealth > 0){
+if(objHUD.suitHealth > 0){
 	equipsuit()
-}
 }

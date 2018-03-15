@@ -2,7 +2,7 @@
 // You can write your code in this editor
 protagonistState=objHUD.protagonistState;
 
-	if((instance_exists(objEnemyBase) || instance_exists(objBoss))&& protagonistState==state.suit){//if enemy is within the room you are in suit ticks down
+	if(/*protagonistState==state.suit &&*/ (instance_exists(objEnemyBase) || instance_exists(objBoss))){//if enemy is within the room you are in suit ticks down
 	objHUD.suitHealth=objHUD.suitHealth-objHUD.suit_tickdown;
 
 
