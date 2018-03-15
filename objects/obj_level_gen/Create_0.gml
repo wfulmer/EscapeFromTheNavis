@@ -327,27 +327,27 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			
 			//if there is a room above
 			if(i != 0 && (room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom)){
-				if(grid[# cx+5, cy-1] != BVDOOR || grid[# cx+5, cy-1] != VDOOR){
+				//if(grid[# cx+5, cy-1] != BVDOOR || grid[# cx+5, cy-1] != VDOOR){
 					grid[# cx+5, cy-1] = VDOOR;
-				}
+				//}
 			}
 			//if there is a room to the right
 			if(j!= 8 && (room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom)){
-				if(grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != HDOOR){
+				//if(grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != HDOOR){
 					grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;
-				}
+				//}
 			}
 			//if there is a room below
 			if(i != 8 && (room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom)){
-				if(grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != BVDOOR || grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != VDOOR ){
+				//if(grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != BVDOOR || grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != VDOOR ){
 					grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;
-				}
+				//}
 			}
 			//if there is a room to the left
 			if(j != 0 && (room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom)){
-				if(grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
+				//if(grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
 					grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;
-				}
+				//}
 			}
 			//add boss room doors here
 			if(j != 0 && (room_grid[# j-1, i] == bmroom))
@@ -357,7 +357,7 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			if(i != 8 && (room_grid[# j, i+1] == bmroom )){
 				grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = BVDOOR;
 			}
-			if(j!= 8 && (room_grid[# j+1, i] == bmroom)){
+			if(j!= 8 && (room_grid[# j+1, i] == bmroom)){//room to the right
 				grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = BHDOOR;
 			}
 			//if there is a room above
