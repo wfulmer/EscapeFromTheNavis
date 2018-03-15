@@ -5,7 +5,7 @@ healthy,
 somewhat_healthy,
 low_health,
 deseperate_health,
-hiding
+
 }
 boss_hp=100; // health
 boss_spawners=5; // how many spawners can the boss make

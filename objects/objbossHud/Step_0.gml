@@ -28,14 +28,32 @@ if(init!=boss_status)
 		
 		case pattern.low_health:
 		{
-			//change timeline
+			with(objBoss)
+			{
+				
+				
+				timeline_index=time_low_health;
+				timeline_position=0;
+				timeline_running=true;
+				timeline_loop=true;
+				
+			}
 			init=pattern.low_health;
 			break;
 		}
 		
 		case pattern.deseperate_health:
 		{
-			//change timeline
+			with(objBoss)
+			{
+				
+				
+				timeline_index=time_desperate_health;
+				timeline_position=0;
+				timeline_running=true;
+				timeline_loop=true;
+				
+			}
 			init=pattern.deseperate_health;
 			break;
 		}

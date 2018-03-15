@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
-if(hp< 100){
+with(objHUD){
+	if(hp< 100){
 	usehealthpowerup();
-	with(other) instance_destroy();
+	with(objhealthup) instance_destroy();
+}
+
 }

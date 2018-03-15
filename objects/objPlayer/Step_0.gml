@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-cooldown=cooldown-1;
+
 // code for left movement with gamepad
  if(!keyboard_check(ord("A")) && gamepad_button_check(0,gp_padl))
  {
@@ -92,13 +92,20 @@ cooldown=cooldown-1;
 	usehealthpowerup();
  }
  */
-if(hp<=0){
-	objHUD.game_over = true;
-	instance_destroy();
-}
 
-switch (protagonistState)
+
+ with(objHUD){
+	 cooldown=cooldown-1;
+	 
+	 if(hp<=0){
+	objHUD.game_over = true;
+	instance_destroy(objPlayer);
+}
+	 
+	 
+	 switch (protagonistState)
 {
+	
 	case state.suit:
 	{
 		curr_movement = suit_movement;
@@ -118,3 +125,4 @@ switch (protagonistState)
 	}
 	
 }
+ }

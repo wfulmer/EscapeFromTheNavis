@@ -1,18 +1,19 @@
 // remove suit
 /// @description Insert description here
 // You can write your code in this editor
-switch protagonistState
+
+	switch objHUD.protagonistState
 {
 	
 		case state.suit:
 	 {
 		 
-		 protagonistState=state.human
+		 objHUD.protagonistState=state.human
 		
 		 audio_play_sound(soundleavesuit,0,false);
-		 curr_firerate=fireRate;
-		 curr_bulletspeed=bulletspeed;
-		 curr_movement=movement;
+		 objHUD.curr_firerate=objHUD.fireRate;
+		 objHUD.curr_bulletspeed=objHUD.bulletspeed;
+		 objHUD.curr_movement=objHUD.movement;
 		 sprite_index=sprPlayerDown
 		 image_index=0
 		 
@@ -21,3 +22,4 @@ switch protagonistState
 	 } 
 	 
 	 }
+	 

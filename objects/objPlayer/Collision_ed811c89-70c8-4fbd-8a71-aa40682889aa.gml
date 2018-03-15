@@ -1,16 +1,16 @@
 /// @description Insert description here
 // You can write your code in this editor
 //inventory[?"suitup"]=inventory[?"suitup"]+1;
-switch protagonistState
+switch objHUD.protagonistState
  {
 	 case state.human:
 	 
 	 {
-		if(suitHealth < 100)
+		if(objHUD.suitHealth < 100)
 		{
-				suitHealth = 100;
+				objHUD.suitHealth = 100;
 				audio_play_sound(soundusepowerup,0,false)
-				with(other) instance_destroy();
+				with(objSuitUp) instance_destroy();
 				//inventory[?"suitup"]=inventory[?"suitup"]-1;
 				
 		}

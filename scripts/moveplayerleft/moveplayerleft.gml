@@ -8,7 +8,7 @@ shootingD=keyboard_check(vk_down);
 
 if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 {
-	switch (protagonistState)
+	switch (objHUD.protagonistState)
 	{
 		
 	case state.suit:
@@ -25,10 +25,10 @@ if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 	}}
 }
 
-if(place_empty(x-curr_movement,y)||!instance_place(x-curr_movement,y,objblock) &&
-!instance_place(x-curr_movement,y,obj_block_hdoor) && !instance_place(x-curr_movement,y,obj_block_vdoor))
+if(place_empty(x-objHUD.curr_movement,y)||!instance_place(x-objHUD.curr_movement,y,objblock) &&
+!instance_place(x-objHUD.curr_movement,y,obj_block_hdoor) && !instance_place(x-objHUD.curr_movement,y,obj_block_vdoor))
 {
 	
-	x=x-curr_movement
+	x=x-objHUD.curr_movement
 	
 }

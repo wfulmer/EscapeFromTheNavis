@@ -3,7 +3,7 @@
 
 audio_play_sound(soundbullet,-1,false);
 
-speed=objPlayer.curr_bulletspeed;
-direction=objPlayer.bulletPath;
+speed=objHUD.curr_bulletspeed;
+direction=objHUD.bulletPath;
 image_angle=direction;
-bulletDamage=objPlayer.curr_damage;
+bulletDamage=objHUD.curr_damage;

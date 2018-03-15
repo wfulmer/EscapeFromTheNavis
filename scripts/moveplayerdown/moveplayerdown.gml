@@ -8,7 +8,7 @@ shootingU=keyboard_check(vk_up);
 shootingD=keyboard_check(vk_down);
 if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 {
-	switch (protagonistState)
+	switch (objHUD.protagonistState)
 	{
 		
 	case state.suit:
@@ -25,9 +25,9 @@ if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 	}
 	}
 }
-if(place_empty(x,y+curr_movement)||!instance_place(x,y+curr_movement,objblock)&&
-!instance_place(x,y+curr_movement,obj_block_hdoor) && !instance_place(x,y+curr_movement,obj_block_vdoor))
+if(place_empty(x,y+objHUD.curr_movement)||!instance_place(x,y+objHUD.curr_movement,objblock)&&
+!instance_place(x,y+objHUD.curr_movement,obj_block_hdoor) && !instance_place(x,y+objHUD.curr_movement,obj_block_vdoor))
 {
-	y=y+curr_movement
+	y=y+objHUD.curr_movement
 	
 }
