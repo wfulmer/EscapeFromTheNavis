@@ -1,0 +1,2 @@
+moveplayerdownhurt()
+///@description move down

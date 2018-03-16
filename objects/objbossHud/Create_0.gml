@@ -50,3 +50,5 @@ if (instance_exists(objPlayer))
  
 
  init=false
+ 
+ alarm[0]=30*2;

@@ -1,0 +1,2 @@
+moveplayerlefthurt()
+///@description move left

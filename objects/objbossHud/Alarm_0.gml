@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-
 if(boss_hp>=60 && boss_hp<=80) boss_status=pattern.somewhat_healthy;
 if(boss_hp>=40 && boss_hp<60) boss_status=pattern.low_health;
 if(boss_hp<40) boss_status=pattern.deseperate_health;
@@ -62,5 +61,4 @@ if(init!=boss_status)
 	}
 }
 
-	
-	
+alarm[0]=30*2;

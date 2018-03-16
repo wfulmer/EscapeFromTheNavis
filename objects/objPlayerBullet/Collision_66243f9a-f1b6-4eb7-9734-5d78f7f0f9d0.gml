@@ -7,6 +7,10 @@ with(other)
 	if(objbossHud.boss_hp<=0){ 
 		instance_destroy();
 		instance_destroy(objbossHud);
+		instance_destroy(obj_shadow_boss);
+		instance_destroy(objboss_acid);
+		instance_destroy(objboss_radialattck);
+		instance_destroy(objbabyboss);
 		global.islocked = false;
 	}
 	

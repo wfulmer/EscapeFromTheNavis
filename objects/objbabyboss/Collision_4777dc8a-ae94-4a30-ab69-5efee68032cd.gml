@@ -6,13 +6,13 @@ with(other){
 		case state.human:
 		{
 			objHUD.hp= objHUD.hp-10;
-			instance_change(obj_player_hurting,true);
+			instance_change(obj_player_hurt,true);
 			break;
 		}
 		case state.suit:
 		{
 			objHUD.suitHealth= objHUD.suitHealth-10;
-			instance_change(obj_player_hurting,true);
+			instance_change(obj_player_hurt,true);
 			break;	
 		}
 	}	

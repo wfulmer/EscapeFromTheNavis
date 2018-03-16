@@ -64,3 +64,4 @@ switch (hurt_orientation)
 }
 
 hurt_count=0;
+
