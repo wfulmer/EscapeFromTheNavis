@@ -8,7 +8,7 @@ with(other)
 		case state.human:
 		{
 		objHUD.hp=objHUD.hp-objEnemyBase.enemy_base_damage;
-		instance_change(obj_player_hurting,true);
+		instance_change(obj_player_hurt,true);
 		
 		
 		
@@ -18,7 +18,7 @@ with(other)
 	case state.suit:
 	{
 			objHUD.suitHealth=objHUD.suitHealth-10;
-			instance_change(obj_player_hurting,true);
+			instance_change(obj_player_hurt,true);
 			break;	
 	}
 	

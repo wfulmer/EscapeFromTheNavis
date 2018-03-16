@@ -17,7 +17,7 @@
 		 sprite_index=sprPlayerDown
 		 image_index=0
 		 
-		 instance_create_layer(x,y-25,"Drops",objSuit);
+		 instance_create_layer(x,y+25,"Drops",objSuit);
 		break;	 
 	 } 
 	 

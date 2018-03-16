@@ -17,17 +17,17 @@ movement=4; //speed of player
 cooldown=0; // cooldown controller of bullet
 hp=100;
 bulletPath =0; // direction of bullet when spawned
-bulletspeed=6;
+bulletspeed=8;
 fireRate=10;
-human_damage=5;
-suit_damage=15;
+human_damage=8;
+suit_damage=12;
 
 //suit stats wont not need this
 
 suitHealth=0;
 suit_movement = movement + movement/2;
 suit_bspeed = bulletspeed*1.5;
-suit_frate = fireRate/2;
+suit_frate = (fireRate/3)*2;
 
 suit_tickdown = 10;
 

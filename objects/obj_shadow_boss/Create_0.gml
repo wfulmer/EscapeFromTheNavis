@@ -5,4 +5,4 @@
 				timeline_running=true;
 				timeline_loop=true;
 				
-boss_shadow_hp=100;
+boss_shadow_hp=50;
