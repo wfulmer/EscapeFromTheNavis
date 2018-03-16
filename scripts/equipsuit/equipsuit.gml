@@ -12,7 +12,7 @@ switch objHUD.protagonistState
 		audio_play_sound(soundsuiton,0,false);
 		sprite_index=sprPlayerSuitDown;
 		image_index=0;
-		alarm[0]=30*3;
+		objHUD.alarm[0]=30*1.5;
 		objHUD.curr_firerate=objHUD.suit_frate;
 		objHUD.curr_bulletspeed=objHUD.suit_bspeed;
 		objHUD.curr_movement=objHUD.suit_movement;

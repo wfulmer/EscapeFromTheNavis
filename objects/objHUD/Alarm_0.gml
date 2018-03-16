@@ -1,10 +1,12 @@
 /// @description Insert description here
 // You can write your code in this editor
-protagonistState=objHUD.protagonistState;
+/// @description Insert description here
+// You can write your code in this editor
 
-	if((instance_exists(objEnemyBase) || instance_exists(objBoss))&& protagonistState==state.suit){//if enemy is within the room you are in suit ticks down
+
+	if((instance_exists(objEnemyBase) || instance_exists(objBoss))&& protagonistState){//if enemy is within the room you are in suit ticks down
 	objHUD.suitHealth=objHUD.suitHealth-objHUD.suit_tickdown;
-
+	}
 
 if(objHUD.suitHealth<=35) {audio_play_sound(soundwarning,2,false); }
 if(objHUD.suitHealth<=0) 
@@ -22,6 +24,6 @@ case state.suit	:
  }
  
 
-}
+
 
 	}

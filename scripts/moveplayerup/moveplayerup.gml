@@ -2,10 +2,10 @@
 
 	 /// @description Insert description here
 // You can write your code in this editor
-shootingL=keyboard_check(vk_left);
-shootingR=keyboard_check(vk_right);
-shootingU=keyboard_check(vk_up);
-shootingD=keyboard_check(vk_down);
+shootingL=keyboard_check(vk_left)|| gamepad_button_check(0,gp_padl) ||gamepad_axis_value(0,gp_axislh)==-.25 ;
+shootingR=keyboard_check(vk_right)|| gamepad_button_check(0,gp_padr) ||gamepad_axis_value(0,gp_axislh)==-.25 ;
+shootingU=keyboard_check(vk_up)||gamepad_axis_value(0,gp_axislv)==-.25|| gamepad_button_check(0,gp_padu);
+shootingD=keyboard_check(vk_down)||gamepad_axis_value(0,gp_axislv)==-.25|| gamepad_button_check(0,gp_padd);
 if(!shootingD&&!shootingL&&!shootingR&&!shootingU)
 {
 	switch (objHUD.protagonistState)
