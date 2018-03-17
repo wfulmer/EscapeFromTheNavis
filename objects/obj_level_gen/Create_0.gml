@@ -97,7 +97,7 @@ var cx = width div 2;
 var cy = height div 2;
 
 //create the player
-instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2,"Instances",objPlayer);
+instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2 + CELL_HEIGHT,"Instances",objPlayer);
 
 
 //determine where the rooms will be
