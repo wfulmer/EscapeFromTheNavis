@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-/*
+
 // code for left movement with gamepad
  if(!keyboard_check(ord("A")) && gamepad_button_check(0,gp_padl))
  {
@@ -76,7 +76,7 @@
  {
 	  removesuit()
  }
- */
+
  
  //use suit poweruup
  /*

@@ -6,3 +6,5 @@
 				timeline_loop=true;
 				
 boss_shadow_hp=50;
+
+alarm[0]=30*5;
