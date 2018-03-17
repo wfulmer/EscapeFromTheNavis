@@ -8,6 +8,7 @@ deseperate_health,
 
 }
 boss_hp=150; // health
+boss_tot_hp = boss_hp;
 boss_spawners=5; // how many spawners can the boss make
 
 boss_alive= instance_exists(objBoss)
