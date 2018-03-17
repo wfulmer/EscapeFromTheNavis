@@ -4,7 +4,8 @@ with(other)
 {
 	objbossHud.boss_hp=objbossHud.boss_hp-(objPlayerBullet.bulletDamage div 3);
 	
-	if(objbossHud.boss_hp<=0){ 
+	if(objbossHud.boss_hp<=0){
+		objHUD.curr_score = objHUD.curr_score + 100;
 		instance_destroy();
 		instance_destroy(objbossHud);
 		instance_destroy(obj_shadow_boss);
