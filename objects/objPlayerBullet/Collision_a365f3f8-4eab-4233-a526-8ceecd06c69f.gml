@@ -1,3 +1,2 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description destroys itself
 instance_destroy()

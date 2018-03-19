@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description full health and suit energy cheat code
 with(objHUD){suitHealth=100;
 hp=100;
 

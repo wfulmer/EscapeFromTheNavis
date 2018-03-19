@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description Insert activate objects around the current room and update orientation
 if(instance_exists(objPlayer))
 {
  player_oreientation= objPlayer.sprite_index;	

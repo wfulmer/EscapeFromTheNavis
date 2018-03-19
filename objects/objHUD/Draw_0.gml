@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description draws health and suit energy bars. Also draws game over message
 if(game_over==false)
 {
 draw_set_color(c_white)

@@ -1,5 +1,4 @@
-/// @description 
-// You can write your code in this editor
+/// @description deal damage to player and enable player's Invinvibility frames
 with(other)
 {
 

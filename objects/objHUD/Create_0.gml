@@ -1,16 +1,8 @@
-/// @description music here
-// You can write your code in this editor
+/// @description music, player attributes, set state
 persistent=true;
-//life =3;
-//scoresofarfar=0;
 
 game_over = false;
 audio_play_sound(soundmusic,-2,true);
-
-
-
-/// @description Insert description here
-// You can write your code in this editor
 
 //human stats
 movement=4; //speed of player
@@ -22,7 +14,6 @@ fireRate=10;
 human_damage=8;
 suit_damage=12;
 
-//suit stats wont not need this
 
 suitHealth=0;
 suit_movement = movement + movement/2;
@@ -33,15 +24,11 @@ suit_tickdown = 10;
 
 //current stats
 curr_movement = movement;
-//curr_cooldown = cooldown;
+
 curr_bulletspeed = bulletspeed;
 curr_firerate = fireRate;
 curr_damage=human_damage;
 curr_score = 0;
-//inventory = ds_map_create();
-
-//inventory[? "healthup"]=0;
-//inventory[? "suitup"]=0;
 
 enum state { 
 	

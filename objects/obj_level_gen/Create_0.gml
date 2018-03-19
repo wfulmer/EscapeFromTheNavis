@@ -109,7 +109,7 @@ if(branches == 2){
 	var diff = irandom_range(5,10);
 	b1_rooms = TOTAL_ROOMS - diff;
 	b2_rooms = diff;
-}else if(branches ==3){//something is wrong with the math here but whatever
+}else if(branches ==3){//something is wrong with the math here
 	var diff = irandom_range(5,7);
 	b1_rooms = TOTAL_ROOMS - diff;
 	b2_rooms = b1_rooms - diff;
@@ -226,22 +226,10 @@ var adj_rooms = 0;
 var low_room_x = 0;
 var low_room_y = 0;
 var low_room_count = 0;
-//TODO: assign boss room
+
 for(var i = 0; i<9; i++){//iterate through room grid.
 	for(var j = 0; j<9; j++){
 		if(room_grid[# j, i] == mroom){//for each room besides the starting room
-			/*
-			//testing if we ignore adjacent rooms.
-			if(low_room_x == 0){
-				low_room_x = j;
-				low_room_y = i;
-			}
-			if(abs(4-low_room_x + 4-low_room_y) < abs(4-j + 4-i)){
-				low_room_x = j;
-				low_room_y = i;
-			}
-			*/
-			
 			//check how many adjacent rooms there are
 			if(j>0 && room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom){//room to right?
 				adj_rooms++;
@@ -277,7 +265,6 @@ for(var i = 0; i<9; i++){//iterate through room grid.
 		}
 	}
 }
-//definitely needs testing!!!
 room_grid[# low_room_x, low_room_y] = bmroom; //set the room with least connections as the boss room
 
 
@@ -379,7 +366,6 @@ for(var ry = 1; ry<height-1; ry++){//iterate through entire grid except the 1 ti
 	}
 }
 
-//global.back_layer = layer_create(3);
 global.back_tilemap = layer_tilemap_create("Back_layer",0,0,tileset1,room_width,room_height);
 
 for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
@@ -409,12 +395,10 @@ for(var ry = 0; ry<height; ry++){//iterate through entire grid to draw tiles
 	}
 	}
 }
-//create the camera
-//view_camera[0] = camera_create_view(3072,2048,832,576,0,0,-1,-1,190,90)
+//clean up data structures
 ds_grid_destroy(room_grid);
 ds_grid_destroy(grid);
 ds_grid_destroy(lay_grid);
 
-//Set global variables????
 global.islocked = true;
 instance_destroy();

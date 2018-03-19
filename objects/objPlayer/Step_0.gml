@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description gamepad controls, fire cooldown, game over, and changing attributes based on state 
 
 // code for left movement with gamepad
  if(!keyboard_check(ord("A")) && gamepad_button_check(0,gp_padl))

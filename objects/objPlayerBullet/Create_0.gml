@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description set attributes based on current state of player
 // You can write your code in this editor
 
 audio_play_sound(soundbullet,-1,false);

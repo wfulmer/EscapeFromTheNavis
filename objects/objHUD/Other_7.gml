@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description destroys player and sets game over to true
 if(hp<=0) 
 {
 	instance_destroy(objPlayer);

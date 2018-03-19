@@ -1,5 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description suit energy goes to max
+
 //inventory[?"suitup"]=inventory[?"suitup"]+1;
 switch objHUD.protagonistState
  {

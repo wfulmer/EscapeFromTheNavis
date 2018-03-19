@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description kill boss if its health is 0, otherwise deal damage and destroy itself
 with(other)
 {
 	objbossHud.boss_hp=objbossHud.boss_hp-(objPlayerBullet.bulletDamage div 3);

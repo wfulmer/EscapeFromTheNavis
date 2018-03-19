@@ -1,8 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
-/// @description Insert description here
-// You can write your code in this editor
-
+/// @description handle suit tickdown if enemy is in room, handle suit falling off
 
 	if((instance_exists(objEnemyBase) || instance_exists(objBoss))&& protagonistState){//if enemy is within the room you are in suit ticks down
 	objHUD.suitHealth=objHUD.suitHealth-objHUD.suit_tickdown;

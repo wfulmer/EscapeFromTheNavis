@@ -1,5 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description deal damage to shadow boss
 with(other)
 {
 	boss_shadow_hp=boss_shadow_hp-(objPlayerBullet.bulletDamage);
