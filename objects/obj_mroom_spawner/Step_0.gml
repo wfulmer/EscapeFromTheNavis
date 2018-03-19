@@ -1,6 +1,6 @@
 /// @description check if all enemies are dead and unlock doors if true.
 //also spawns a reward depending on the chance
-if (!instance_exists(objEnemyBase)){
+if (!instance_exists(objEnemyBase) && !instance_exists(objBoss) && !instance_exists(objbossSheild)){
 	global.islocked	= false;
 	if(spawn_active == false && reward == false){
 	objHUD.curr_score = objHUD.curr_score + 20;

@@ -55,21 +55,14 @@ temp_layout = ds_grid_create(MROOM_WIDTH+2,MROOM_HEIGHT+2);
 for(var j = 0; j<MROOM_HEIGHT+2; j++){ //fill with void cells
 	for(var i = 0; i<MROOM_WIDTH+2; i++){
 		temp_layout[# i,j] = VOID;
-		if( (j == 1 && i>2 && i<8 )){//then insert the layout
+		if( (i == 2 && j>1 && j<5 )){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
 		}
-		if( (j == 5 && i>2 && i<8 )){//then insert the layout
+		if( (i == 5 && j>1 && j<5 )){//then insert the layout
 			temp_layout[# i, j] = OBSTACLE;
 		}
-		if( (j == 1 && i>0 && i<2 ) || (j == 5 && i>0 && i<2) || (j == 4 && i>0 && i<2) || (j == 3 && i>0 && i<2) || (j == 2 && i>0 && i<2)){//then insert the layout
+		if((i == 8 && j>1 && j<5)){
 			temp_layout[# i, j] = OBSTACLE;
-		}
-		if( (j == 1 && i>8 && i<10 ) || (j == 5 && i>8 && i<10) || (j == 4 && i>8 && i<10) || (j == 3 && i>8 && i<10) || (j == 2 && i>8 && i<10)){//then insert the layout
-			temp_layout[# i, j] = OBSTACLE;
-		}
-		if(( j == 1 && i ==5 ) || (j == 5 && i == 5) || (j == 3 && i == 1) || (j == 3  && i == 9))
-		{
-			temp_layout[# i, j] = VOID;
 		}
 	}
 }
