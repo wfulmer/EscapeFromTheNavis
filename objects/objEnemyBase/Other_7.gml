@@ -8,9 +8,9 @@ if(instance_exists(objPlayer))
 		path_start(newPath,enemy_base_speed, path_action_stop, 0);
 	}     
 }
-//	else {
-//	 move_towards_point(objPlayer.x,objPlayer.y,enemy_base_speed)	
-//	}
+	else {
+	 speed=0;	
+	}
 	  
-//	  }
+	
 	  

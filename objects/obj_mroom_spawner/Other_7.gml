@@ -23,3 +23,4 @@ if (instance_exists(objPlayer))
 		mp_grid_add_instances(obj_mroom_spawner.search,self,true);
 	 }
  }
+ 

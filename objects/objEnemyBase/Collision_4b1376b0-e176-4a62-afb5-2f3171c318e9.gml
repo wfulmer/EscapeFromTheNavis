@@ -26,4 +26,3 @@ with(other)
 	 
 	
 }
-with(self) instance_destroy();

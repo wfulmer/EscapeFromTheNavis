@@ -97,7 +97,7 @@ var cx = width div 2;
 var cy = height div 2;
 
 //create the player
-instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2,"Instances",objPlayer);
+instance_create_layer(cx*CELL_WIDTH+CELL_WIDTH/2,cy*CELL_HEIGHT+CELL_HEIGHT/2 + CELL_HEIGHT,"Instances",objPlayer);
 
 
 //determine where the rooms will be
@@ -327,25 +327,25 @@ for(var i = 0; i<9; i++){//iterate through room_grid to draw rooms and doors
 			
 			//if there is a room above
 			if(i != 0 && (room_grid[# j, i-1] == mroom || room_grid[# j, i-1] == smroom)){
-				if(grid[# cx+5, cy-1] != BVDOOR || grid[# cx+5, cy-1] != VDOOR){
+				if(grid[# cx+5, cy-1] != BVDOOR && grid[# cx+5, cy-1] != VDOOR){
 					grid[# cx+5, cy-1] = VDOOR;
 				}
 			}
 			//if there is a room to the right
 			if(j!= 8 && (room_grid[# j+1, i] == mroom || room_grid[# j+1, i] == smroom)){
-				if(grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != HDOOR){
+				if(grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != BHDOOR && grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] != HDOOR){
 					grid[# cx+MROOM_WIDTH, cy+(MROOM_HEIGHT div 2)] = HDOOR;
 				}
 			}
 			//if there is a room below
 			if(i != 8 && (room_grid[# j, i+1] == mroom || room_grid[# j, i+1] == smroom)){
-				if(grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != BVDOOR || grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != VDOOR ){
+				if(grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != BVDOOR && grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] != VDOOR ){
 					grid[# cx+(MROOM_WIDTH div 2), cy+MROOM_HEIGHT] = VDOOR;
 				}
 			}
 			//if there is a room to the left
 			if(j != 0 && (room_grid[# j-1, i] == mroom || room_grid[# j-1, i] == smroom)){
-				if(grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR || grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
+				if(grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR && grid[# cx-1, cy+(MROOM_HEIGHT div 2)] != BHDOOR){
 					grid[# cx-1, cy+(MROOM_HEIGHT div 2)] = HDOOR;
 				}
 			}

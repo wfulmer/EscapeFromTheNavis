@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-/*
+
 if(!keyboard_check(ord("A")) && gamepad_button_check(0,gp_padl))
  {
 	 moveplayerlefthurt();
@@ -41,4 +41,3 @@ if(!keyboard_check(ord("A")) && gamepad_button_check(0,gp_padl))
  {
 	moveplayerdownhurt()
  }
- */

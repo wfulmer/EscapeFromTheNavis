@@ -10,5 +10,5 @@ xtwo=view_x+((view_wport[0]/2)+300)//TODO FIX ME
 
 if(boss_alive||boss_hiding)
 {
-draw_healthbar(view_x + 300 ,view_y+10, view_x + 600,view_y+40,objbossHud.boss_hp, $FF000000 & $FFFFFF, c_red, c_lime, 0, true, true);
+draw_healthbar(view_x + 300 ,view_y+10, view_x + 600,view_y+40,(objbossHud.boss_hp/objbossHud.boss_tot_hp * 100) , $FF000000 & $FFFFFF, c_red, c_lime, 0, true, true);
 }

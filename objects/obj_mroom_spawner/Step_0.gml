@@ -3,6 +3,7 @@
 if (!instance_exists(objEnemyBase)){
 	global.islocked	= false;
 	if(spawn_active == false && reward == false){
+	objHUD.curr_score = objHUD.curr_score + 20;
 	spawn_x = x+irandom_range(1,9)*CELL_WIDTH;
 	spawn_y = y+irandom_range(1,5)*CELL_HEIGHT;
 		if(place_free(spawn_x,spawn_y) && r_chance == 4){

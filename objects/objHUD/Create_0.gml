@@ -37,12 +37,11 @@ curr_movement = movement;
 curr_bulletspeed = bulletspeed;
 curr_firerate = fireRate;
 curr_damage=human_damage;
+curr_score = 0;
+//inventory = ds_map_create();
 
-
-inventory = ds_map_create();
-
-inventory[? "healthup"]=0;
-inventory[? "suitup"]=0;
+//inventory[? "healthup"]=0;
+//inventory[? "suitup"]=0;
 
 enum state { 
 	
