@@ -4,9 +4,9 @@ with(other)
 {
 	objbossHud.boss_hp=objbossHud.boss_hp-(objPlayerBullet.bulletDamage div 3);
 	
-	if(objbossHud.boss_hp<=0){
-		objHUD.curr_score = objHUD.curr_score + 100;
-		instance_create_layer(objBoss.x, objBoss.y, "Drops", obj_Transporter);
+	if(objbossHud.boss_hp<=0){ 
+		audio_play_sound(boss_death,3,false);
+		instance_create_layer(x,y,"Drops",obj_Transporter);
 		instance_destroy();
 		instance_destroy(objbossHud);
 		instance_destroy(obj_shadow_boss);
