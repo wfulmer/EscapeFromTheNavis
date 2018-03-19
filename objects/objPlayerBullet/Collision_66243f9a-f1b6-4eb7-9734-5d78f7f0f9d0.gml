@@ -5,6 +5,7 @@ with(other)
 	objbossHud.boss_hp=objbossHud.boss_hp-(objPlayerBullet.bulletDamage div 3);
 	
 	if(objbossHud.boss_hp<=0){ 
+		audio_play_sound(boss_death,3,false);
 		instance_destroy();
 		instance_destroy(objbossHud);
 		instance_destroy(obj_shadow_boss);

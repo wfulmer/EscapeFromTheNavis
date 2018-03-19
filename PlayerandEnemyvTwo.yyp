@@ -415,6 +415,14 @@
             }
         },
         {
+            "Key": "518512e4-bfc4-471e-8035-f794d95639f9",
+            "Value": {
+                "id": "6a38f037-4244-4e27-bfd0-20e0905c0875",
+                "resourcePath": "sounds\\boss_death\\boss_death.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "518fff90-ae1e-4b48-8d40-8efcc6bd9552",
             "Value": {
                 "id": "accc13cd-1fef-4b90-a7b5-bd0c44b604f1",
