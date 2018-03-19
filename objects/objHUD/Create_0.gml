@@ -49,3 +49,4 @@ enum state {
 	suit	
 }
 protagonistState= state.human
+instance_deactivate_region(x-(MROOM_WIDTH*CELL_WIDTH),y-(MROOM_HEIGHT*CELL_HEIGHT),MROOM_WIDTH*3*CELL_WIDTH,MROOM_HEIGHT*3*CELL_HEIGHT,false,true);

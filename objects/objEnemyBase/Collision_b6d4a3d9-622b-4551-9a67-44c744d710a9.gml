@@ -1,4 +1,4 @@
-/// @description jostle eachother- doesn't seem to do anything
+/// @description jostle eachother
 var push = 1;
 if(instance_exists(objPlayer) && place_free(x-push,y-push))
 {

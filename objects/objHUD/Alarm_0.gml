@@ -22,8 +22,5 @@ case state.suit	:
 	 alarm[0] = 30*1.5;
 	 break;
  }
- 
+}
 
-
-
-	}
